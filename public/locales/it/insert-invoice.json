@@ -1,0 +1,11 @@
+{
+    "modify-title": "Modifica Fattura",
+    "insert-title": "Inserisci Nuova Fattura",
+    "title": "Cliente",
+    "success-save-message": "Fattura salvata con successo",
+    "success-save-message-title": "Fattura",
+    "success-confirm-message": "Fattura confermata con successo",
+    "success-confirm-message-title": "Fattura",
+    "error-save-message": "Esiste già una fattura con lo stesso numero",
+    "error-save-message-title": "Fattura"
+}

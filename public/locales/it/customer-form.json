@@ -1,0 +1,49 @@
+{
+  "name": {
+    "label": "Nome",
+    "placeholder": "Inserisci il nome",
+    "feedback": "Il nome è obbligatorio"
+  },
+  "surname": {
+    "label": "Cognome",
+    "placeholder": "Inserisci il cognome",
+    "feedback": "Il cognome è obbligatorio"
+  },
+  "address": {
+    "label": "Indirizzo",
+    "placeholder": "Inserisci l'Indirizzo",
+    "feedback": "L'indirizzo è obbligatorio"
+  },
+  "cap": {
+    "label": "Cap",
+    "placeholder": "Inserisci il Cap",
+    "feedback": "Il Cap è obbligatorio"
+  },
+  "city": {
+    "label": "Città",
+    "placeholder": "Inserisci la Città",
+    "feedback": "La città è obbligatoria"
+  },
+  "phone": {
+    "label": "Recapito Telefonico",
+    "placeholder": "Inserisci il recapito telefonico",
+    "feedback": "Il recapito telefonico è obbligatorio"
+  },
+  "email": {
+    "label": "Email",
+    "placeholder": "Inserisci l'email",
+    "feedback": "L'email è obbligatoria"
+  },
+  "cf": {
+    "label": "Codice Fiscale",
+    "placeholder": "Inserisci il Codice Fiscale",
+    "feedback": "Il Codice Fiscale è obbligatorio"
+  },
+  "piva": {
+    "label": "P. Iva",
+    "placeholder": "Inserisci la Partita Iva"   
+  },
+  "button": {
+    "save": "Salva"
+  }
+}

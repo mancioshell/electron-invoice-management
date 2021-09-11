@@ -1,0 +1,28 @@
+{
+  "title": "Fattura",
+  "invoice": {
+    "date": {
+      "label": "Data Fattura",
+      "placeholder": "Inserisci la data di della fattura",
+      "feedback": "La data della fattura è obbligatoria"
+    },
+
+    "number": {
+      "label": "Numero Fattura",
+      "placeholder": "Inserisci il numero di della fattura",
+      "feedback": "Il Numero della fattura è obbligatoria"
+    },
+    "tax-stamp": {
+      "label": "Identificativo Marca da Bollo",
+      "placeholder": "Inserisci l'identificativo della marca da bollo",
+      "feedback": "L'identificativo della marca da bollo è obbligatorio e deve rispettare il formato corretto."
+    }
+  },
+  "service-list": {
+    "label": "Prestazioni",
+    "button": "Aggiungi"
+  },
+  "button": {
+    "save": "Salva"
+  }
+}

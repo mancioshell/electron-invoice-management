@@ -1,0 +1,60 @@
+{
+  "company": {
+    "label": "Applicazione",
+    "brand": {
+      "label": "Nome Applicazione",
+      "placeholder": "Inserisci il nome dell'applicazione",
+      "feedback": "Il nome dell'applicazione è obbligatorio"
+    },
+    "name": {
+      "label": "Nome",
+      "placeholder": "Inserisci il nome",
+      "feedback": "Il nome è obbligatorio"
+    },
+    "surname": {
+      "label": "Cognome",
+      "placeholder": "Inserisci il cognome",
+      "feedback": "Il cognome è obbligatorio"
+    },
+    "address": {
+      "label": "Indirizzo",
+      "placeholder": "Inserisci l'indirizzo",
+      "feedback": "L'indirizzo è obbligatorio"
+    },
+    "cap": {
+      "label": "Cap",
+      "placeholder": "Inserisci Cap",
+      "feedback": "Il Cap è obbligatorio"
+    },
+    "city": {
+      "label": "Città",
+      "placeholder": "Inserisci la città",
+      "feedback": "La Città è obbligatoria"
+    },
+    "cf": {
+      "label": "Codice Fiscale",
+      "placeholder": "Inserisci il Codice Fiscale",
+      "feedback": "Il Codice Fiscale è obbligatorio"
+    },
+    "piva": {
+      "label": "Partita IVA",
+      "placeholder": "Inserisci la Partita IVA",
+      "feedback": "La Partita IVA è obbligatoria"
+    }
+  },
+
+  "tax-stamp": {
+    "label": "Marca da Bollo",
+    "tax-stamp-treshold": {
+      "label": "Soglia Marca da Bollo (€)",
+      "placeholder": "Inserisci la soglia della Marca da Bollo",
+      "feedback": "La Soglia della Marca da Bollo è obbligatoria"
+    },
+    "tax-stamp-amount": {
+      "label": "Costo Marca da Bollo (€)",
+      "placeholder": "Inserisci il costo della Marca da Bollo",
+      "feedback": "Il costo della Marca da Bollo è obbligatoria"
+    }
+  },
+  "button": "Salva"
+}

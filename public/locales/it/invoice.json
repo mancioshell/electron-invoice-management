@@ -1,0 +1,15 @@
+{
+  "label": {
+    "invoice-number": "Numero Fattura",   
+    "address": "Indirizzo",
+    "phone": "Reacapito Telefonico",
+    "date": "Data Fattura",
+    "invoice-resume": "Riepilogo Fattura",
+    "total-income": "Totale Fattura"
+  },
+
+  "button": {
+    "print": "Stampa",
+    "invoice-list": "Lista Fatture"
+  }
+}

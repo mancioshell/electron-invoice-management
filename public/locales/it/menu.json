@@ -1,0 +1,9 @@
+{
+    "items": {
+        "invoice": "Fatture",
+        "new-invoice": "Nuova Fattura",
+        "invoice-list": "Lista Fatture",        
+        "customer-list": "Lista Clienti",        
+        "settings": "Impostazioni"
+    }
+}

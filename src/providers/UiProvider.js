@@ -1,0 +1,16 @@
+import React, { useState } from 'react'
+import { UIContext } from 'context/UIContext'
+
+const UiProvider = ({ children }) => {
+  const [message, addMessage] = useState({
+    text: '',
+    type: '',
+    variant: 'light',
+    show: false
+  })
+
+  const { Provider } = UIContext
+  return <Provider value={{ message, addMessage }}>{children}</Provider>
+}
+
+export default UiProvider

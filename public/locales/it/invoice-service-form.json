@@ -1,0 +1,15 @@
+{
+  "service": {
+    "label": "Prestazione",
+    "placeholder": "Inserisci la prestazione",
+    "feedback": "La prestazione è obbligatoria"
+  },
+  "amount": {
+    "label": "Importo",
+    "placeholder": "Inserisci l'importo della prestazione",
+    "feedback": "Il valore deve essere maggiore di 0"
+  },
+  "button": {
+    "remove": "Rimuovi"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Aggiornamento Applicazione",
+  "button": {
+    "close": "Chiudi",
+    "remind-later": "Ricordamelo più tardi"
+  },
+  "detail": "E' stato eseguito il download di una nuova versione. Chiudi e Riapri l'applicazione per applicare gli aggiornamenti.",
+  "settings": {
+    "brand": "Invoice Assistant",
+    "name": "Nome",
+    "surname": "Cognome",
+    "address": "Indirizzo",
+    "city": "Città",
+    "cap": "Cap",  
+    "cf": "Codice Fiscale",
+    "piva": "Partita Iva"
+  }
+}
