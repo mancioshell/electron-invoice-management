@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { UIContext } from 'context/UIContext'
+import { UIContext } from 'Contexts/UIContext'
 
 const UiProvider = ({ children }) => {
   const [message, addMessage] = useState({

@@ -5,7 +5,7 @@ import * as yup from 'yup'
 import BlockUi from 'react-block-ui'
 import { useTranslation } from 'react-i18next'
 
-import CustomerInput from 'components/Customer/CustomerInput'
+import CustomerInput from 'Components/Customer/CustomerInput'
 
 const customerSchema = yup
   .object()

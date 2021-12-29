@@ -5,7 +5,7 @@ import { useParams, useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import BlockUi from 'react-block-ui'
 
-import InvoiceResumeTable from 'components/Invoice/InvoiceResumeTable'
+import InvoiceResumeTable from 'Components/Invoice/InvoiceResumeTable'
 
 const initInvoice = {
   customer: {

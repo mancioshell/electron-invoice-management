@@ -1,13 +1,13 @@
 import React from 'react'
 import { Form, Button } from 'react-bootstrap'
-import { Formik, validateYupSchema, yupToFormErrors } from 'formik'
+import { Formik } from 'formik'
 import * as yup from 'yup'
 
 import BlockUi from 'react-block-ui'
 import { useTranslation } from 'react-i18next'
 
-import CompanyInput from 'components/Settings/CompanyInput'
-import SettingsInput from 'components/Settings/SettingsInput'
+import CompanyInput from 'Components/Settings/CompanyInput'
+import SettingsInput from 'Components/Settings/SettingsInput'
 
 const schema = yup
   .object()

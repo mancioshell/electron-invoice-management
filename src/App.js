@@ -16,19 +16,19 @@ import {
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 
-import { Menu } from 'components/Layout/Menu'
-import { Footer } from 'components/Layout/Footer'
-import { Messages } from 'components/Layout/Messages'
+import { Menu } from 'Components/Layout/Menu'
+import { Footer } from 'Components/Layout/Footer'
+import { Messages } from 'Components/Layout/Messages'
 
-import { InsertInvoice } from 'pages/Invoice/InsertInvoice'
-import { InvoiceList } from 'pages/Invoice/InvoiceList'
-import { Invoice } from 'pages/Invoice/Invoice'
-import { CustomerList } from 'pages/Customer/CustomerList'
-import { InsertCustomer } from 'pages/Customer/InsertCustomer'
-import { InsertSettings } from 'pages/Settings/InsertSettings'
+import { InsertInvoice } from 'Pages/Invoice/InsertInvoice'
+import { InvoiceList } from 'Pages/Invoice/InvoiceList'
+import { Invoice } from 'Pages/Invoice/Invoice'
+import { CustomerList } from 'Pages/Customer/CustomerList'
+import { InsertCustomer } from 'Pages/Customer/InsertCustomer'
+import { InsertSettings } from 'Pages/Settings/InsertSettings'
 
-import SettingsProvider from 'providers/SettingsProvider'
-import UiProvider from 'providers/UiProvider'
+import SettingsProvider from 'Providers/SettingsProvider'
+import UiProvider from 'Providers/UiProvider'
 
 function App() {
   return (

@@ -8,7 +8,7 @@ const api = require('./lib/db').api
 const i18n = require('./i18n')
 let i18next
 
-const server = 'https://hazel-27923t225-mancioshell.vercel.app'
+const server = 'https://automatic-update-electron-invoice-management.vercel.app'
 const url = `${server}/update/${process.platform}/${app.getVersion()}`
 
 // Conditionally include the dev tools installer to load React Dev Tools

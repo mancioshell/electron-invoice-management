@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { SettingsContext, initSettings } from 'context/SettingsContext'
+import { SettingsContext, initSettings } from 'Contexts/SettingsContext'
 
 const SettingsProvider = ({ children }) => {
   const [settings, setSettings] = useState(initSettings)

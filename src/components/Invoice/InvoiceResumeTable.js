@@ -3,7 +3,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useState, useEffect, useContext } from 'react'
 
-import SettingsContext from 'context/SettingsContext'
+import SettingsContext from 'Contexts/SettingsContext'
 
 function InvoiceResumeTable({ totalIncome = 0 }) {
   const { t } = useTranslation(['invoice-resume-table'])

@@ -1,6 +1,6 @@
 import { Table, Row, Col } from 'react-bootstrap'
 
-import Pagination from 'components/Utils/Pagination'
+import Pagination from 'Components/Utils/Pagination'
 
 function TablePagination({
   getTableProps,

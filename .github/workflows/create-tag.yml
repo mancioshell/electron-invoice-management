@@ -14,7 +14,7 @@ jobs:
       - name: Install and Test
         uses: actions/setup-node@v2
         with:
-          node-version: "14"
+          node-version: "16"
       - run: yarn install
       - run: yarn test:coverage
 
@@ -29,7 +29,7 @@ jobs:
       - name: Standard Version Release
         uses: actions/setup-node@v2
         with:
-          node-version: "14"
+          node-version: "16"
       - run: git config --global user.email "${{ env.GIT_COMMIT_AUTHOR_EMAIL }}"
       - run: git config --global user.name "${{ env.GIT_COMMIT_AUTHOR_NAME }}"
       - run: yarn release

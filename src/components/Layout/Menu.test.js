@@ -5,10 +5,10 @@ import '@testing-library/jest-dom/extend-expect'
 import Menu from './Menu'
 import { createMemoryHistory } from 'history'
 import { Router } from 'react-router-dom'
-import SettingsContext from 'context/SettingsContext'
+import SettingsContext from 'Contexts/SettingsContext'
 
-import i18NextCustomRender from '../../i18n.test'
-import config from '../../../public/locales/it/menu.json'
+import i18NextCustomRender from 'Root/i18n.test'
+import config from 'Public/locales/it/menu.json'
 
 let settings = {
   brand: 'Invoice Assistant'
