@@ -2,11 +2,11 @@ import React from 'react'
 
 import { waitFor, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import SettingsForm from 'components/Settings/SettingsForm'
+import SettingsForm from 'Components/Settings/SettingsForm'
 import userEvent from '@testing-library/user-event'
 
-import i18NextCustomRender from '../../i18n.test'
-import config from '../../../public/locales/it/settings-form.json'
+import i18NextCustomRender from 'Root/i18n.test'
+import config from 'Public/locales/it/settings-form.json'
 
 let settings = {
   brand: '',

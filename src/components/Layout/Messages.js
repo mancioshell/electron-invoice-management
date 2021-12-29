@@ -1,7 +1,7 @@
 import { Toast } from 'react-bootstrap'
 import React, { useContext } from 'react'
 
-import { UIContext } from 'context/UIContext'
+import { UIContext } from 'Contexts/UIContext'
 
 function Messages() {
   const { addMessage, message } = useContext(UIContext)

@@ -1,6 +1,14 @@
 {
   "compilerOptions": {
-    "baseUrl": "src"
+    "baseUrl": ".",
+    "paths": {
+      "Components/*": ["./src/components/*"],
+      "Contexts/*": ["./src/contexts/*"],
+      "Providers/*": ["./src/providers/*"],
+      "Pages/*": ["./src/pages/*"],
+      "Public/*": ["./public/*"],
+      "Root/*": ["./src/*"]
+    }
   },
   "include": ["src", "public"],
   "exclude": ["node_modules", "out"]

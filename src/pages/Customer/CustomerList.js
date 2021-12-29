@@ -3,7 +3,7 @@ import { Alert } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-import CustomerListTable from 'components/Customer/CustomerListTable'
+import CustomerListTable from 'Components/Customer/CustomerListTable'
 
 function CustomerList() {
   const history = useHistory()

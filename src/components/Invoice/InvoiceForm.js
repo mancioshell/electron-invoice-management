@@ -10,13 +10,13 @@ import * as yup from 'yup'
 import { useTranslation } from 'react-i18next'
 import BlockUi from 'react-block-ui'
 
-import InvoiceInput from 'components/Invoice/InvoiceInput'
-import InvoiceServiceListInput from 'components/Invoice/InvoiceServiceListInput'
+import InvoiceInput from 'Components/Invoice/InvoiceInput'
+import InvoiceServiceListInput from 'Components/Invoice/InvoiceServiceListInput'
 
-import { CustomerInput, customerSchema } from 'components/Customer/CustomerForm'
-import InvoiceResumeTable from 'components/Invoice/InvoiceResumeTable'
+import { CustomerInput, customerSchema } from 'Components/Customer/CustomerForm'
+import InvoiceResumeTable from 'Components/Invoice/InvoiceResumeTable'
 
-import SettingsContext from 'context/SettingsContext'
+import SettingsContext from 'Contexts/SettingsContext'
 
 const InvoiceSchema = yup.object({
   customer: customerSchema,

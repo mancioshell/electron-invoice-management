@@ -4,7 +4,7 @@ import { useState, useEffect, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-import { SettingsContext } from 'context/SettingsContext'
+import { SettingsContext } from 'Contexts/SettingsContext'
 
 function Menu() {
   const history = useHistory()

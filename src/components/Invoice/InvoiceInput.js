@@ -4,7 +4,7 @@ import { Field } from 'formik'
 import { useTranslation } from 'react-i18next'
 import DatePicker from 'react-datepicker'
 
-import SettingsContext from 'context/SettingsContext'
+import SettingsContext from 'Contexts/SettingsContext'
 
 function InvoiceInput({ totalIncome }) {
   const { t } = useTranslation(['invoice-form'])

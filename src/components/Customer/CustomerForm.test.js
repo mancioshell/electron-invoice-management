@@ -5,8 +5,8 @@ import '@testing-library/jest-dom/extend-expect'
 import CustomerForm from './CustomerForm'
 import userEvent from '@testing-library/user-event'
 
-import i18NextCustomRender from '../../i18n.test'
-import config from '../../../public/locales/it/customer-form.json'
+import i18NextCustomRender from 'Root/i18n.test'
+import config from 'Public/locales/it/customer-form.json'
 
 let customer = {
   name: '',

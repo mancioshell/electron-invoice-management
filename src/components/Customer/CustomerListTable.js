@@ -9,8 +9,8 @@ import React from 'react'
 
 import { useTranslation } from 'react-i18next'
 
-import FilterTable from 'components/Utils/FilterTable'
-import TablePagination from 'components/Utils/TablePagination'
+import FilterTable from 'Components/Utils/FilterTable'
+import TablePagination from 'Components/Utils/TablePagination'
 
 function CustomerListTable({ customerList, updateCustomer, createInvoice }) {
   const { t } = useTranslation(['customer-table-list'])

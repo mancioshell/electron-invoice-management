@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import BlockUi from 'react-block-ui'
 
-import InvoiceListTable from 'components/Invoice/InvoiceListTable'
+import InvoiceListTable from 'Components/Invoice/InvoiceListTable'
 
 function InvoiceList() {
   const history = useHistory()

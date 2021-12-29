@@ -2,10 +2,10 @@ import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 
 
-import SettingsForm from 'components/Settings/SettingsForm'
+import SettingsForm from 'Components/Settings/SettingsForm'
 
-import UIContext from 'context/UIContext'
-import { SettingsContext } from 'context/SettingsContext'
+import UIContext from 'Contexts/UIContext'
+import { SettingsContext } from 'Contexts/SettingsContext'
 
 function InsertSettings() {
   const {settings, setSettings} = useContext(SettingsContext)

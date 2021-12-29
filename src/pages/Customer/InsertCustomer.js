@@ -6,9 +6,9 @@ import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-import CustomerForm from 'components/Customer/CustomerForm'
-import SearchCustomerInput from 'components/Customer/SearchCustomerInput'
-import UIContext from 'context/UIContext'
+import CustomerForm from 'Components/Customer/CustomerForm'
+import SearchCustomerInput from 'Components/Customer/SearchCustomerInput'
+import UIContext from 'Contexts/UIContext'
 
 const SearchCustomerInputRef = React.forwardRef((props, ref) => {
   return <SearchCustomerInput {...props} forwardedRef={ref} />

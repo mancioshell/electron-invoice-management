@@ -1,6 +1,6 @@
 {
   "name": "electron-invoice-management",
-  "version": "1.6.0",
+  "version": "1.0.0",
   "description": "An Electron app to assist invoice management",
   "main": "public/main.js",
   "homepage": "./",
@@ -10,14 +10,14 @@
   "scripts": {
     "commit": "git-cz",
     "electron": "wait-on tcp:3000 && electron-forge start",
-    "package": "react-scripts build && electron-forge package",
-    "make": "react-scripts build && electron-forge make",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --testPathIgnorePatterns=src/i18n.test.js --env=jsdom",
-    "test:spec": "react-scripts test --testPathIgnorePatterns=src/i18n.test.js --env=jsdom --watchAll=false",
-    "test:coverage": "react-scripts test --testPathIgnorePatterns=src/i18n.test.js --env=jsdom --watchAll=false --coverage",
-    "eject": "react-scripts eject",
+    "package": "craco build && electron-forge package",
+    "make": "craco build && electron-forge make",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test --testPathIgnorePatterns=src/i18n.test.js --env=jsdom",
+    "test:spec": "craco test --testPathIgnorePatterns=src/i18n.test.js --env=jsdom --watchAll=false",
+    "test:coverage": "craco test --testPathIgnorePatterns=src/i18n.test.js --env=jsdom --watchAll=false --coverage",
+    "eject": "craco eject",
     "dev": "concurrently -k \"cross-env BROWSER=none npm start\" \"npm:electron\"",
     "icon": "electron-icon-builder --input=./public/gym-logo.png --output=./out",
     "format": "prettier --write .",
@@ -55,6 +55,7 @@
     "wait-on": "^5.3.0"
   },
   "dependencies": {
+    "@craco/craco": "^6.4.3",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",

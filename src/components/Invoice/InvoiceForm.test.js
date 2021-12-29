@@ -2,15 +2,14 @@ import React from 'react'
 
 import { waitFor, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import InvoiceForm from 'components/Invoice/InvoiceForm'
-import SettingsContext from 'context/SettingsContext'
+import InvoiceForm from 'Components/Invoice/InvoiceForm'
+import SettingsContext from 'Contexts/SettingsContext'
 import userEvent from '@testing-library/user-event'
-import selectEvent from 'react-select-event'
 
-import i18NextCustomRender from '../../i18n.test'
-import invoiceFormConfig from '../../../public/locales/it/invoice-form.json'
-import customerConfig from '../../../public/locales/it/customer-form.json'
-import invoiceServiceFormConfig from '../../../public/locales/it/invoice-service-form.json'
+import i18NextCustomRender from 'Root/i18n.test'
+import invoiceFormConfig from 'Public/locales/it/invoice-form.json'
+import customerConfig from 'Public/locales/it/customer-form.json'
+import invoiceServiceFormConfig from 'Public/locales/it/invoice-service-form.json'
 
 const customRender = (ui, renderOptions) => {
   const config = {
