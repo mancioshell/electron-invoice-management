@@ -5,7 +5,7 @@ import '@testing-library/jest-dom/extend-expect'
 import CustomerForm from './CustomerForm'
 import userEvent from '@testing-library/user-event'
 
-import i18NextCustomRender from 'Root/i18n.test'
+import i18NextCustomRender from 'Root/i18next/i18n.test'
 import config from 'Public/locales/it/customer-form.json'
 
 let customer = {
@@ -61,8 +61,6 @@ test('rendering and submitting a CustomerForm', async () => {
   userEvent.type(screen.getByLabelText(/Codice Fiscale/), newCustomer.cf)
 
   userEvent.click(screen.getByRole('button', { name: /Salva/ }))
-
-  screen.logTestingPlaygroundURL()
 
   await waitFor(() => {
     expect(saveCustomer).toHaveBeenCalledWith(newCustomer, expect.anything())

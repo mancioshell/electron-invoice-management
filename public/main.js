@@ -1,6 +1,12 @@
-const { app, BrowserWindow, autoUpdater, dialog, ipcMain } = require('electron')
-const backend = require('i18next-electron-fs-backend')
-const fs = require('fs')
+const {
+  app,
+  globalShortcut,
+  BrowserWindow,
+  autoUpdater,
+  dialog,
+  ipcMain
+} = require('electron')
+
 const isDev = require('electron-is-dev')
 const path = require('path')
 const api = require('./lib/db').api
@@ -57,12 +63,10 @@ function createWindow() {
     width: 1920,
     height: 1080,
     webPreferences: {
-      preload: path.join(__dirname, 'lib', 'preload.js')
+      preload: path.join(__dirname, 'preload.js')
     },
     icon: __dirname + '/favicon.ico'
-  })
-
-  backend.mainBindings(ipcMain, win, fs)
+  })  
 
   win.loadURL(
     isDev
@@ -75,14 +79,31 @@ function createWindow() {
     win.webContents.openDevTools({ mode: 'bottom' })
   }
 
+  let ret = globalShortcut.register('CommandOrControl+Shift+I', () => {
+    win.webContents.toggleDevTools()
+  })
+
+  if (!ret) {
+    console.log('registration failed')
+  }
+
+  ret = globalShortcut.register('CommandOrControl+R', function () {
+    console.log('CommandOrControl+R is pressed')
+    win.reload()
+  })
+
+  if (!ret) {
+    console.log('registration failed')
+  }
+
   if (!isDev) {
     win.removeMenu()
   }
 }
 
 app.whenReady().then(() => {
-  i18next = i18n.initI18Next(app.getLocale())
   createWindow()
+  i18next = i18n.initI18Next(app.getLocale())
 
   if (!isDev) createAutoUpdater()
 
@@ -111,14 +132,5 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
-  } else {
-    backend.clearMainBindings(ipcMain)
   }
 })
-
-// app.on('ready', () => {
-//   let currentLocale = app.getLocale()
-//   console.log(currentLocale)
-//   //console.log('electron-ready currentLocale: ' + currentLocale);
-//   // currentLocale = 'bn';
-// })
