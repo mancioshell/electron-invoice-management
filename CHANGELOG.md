@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://github.com/mancioshell/electron-invoice-management/compare/v1.0.1...v1.0.2) (2021-12-30)
+
+
+### Bug Fixes
+
+* developed new backend plugin to load i18n locales ([8f3452a](https://github.com/mancioshell/electron-invoice-management/commit/8f3452a57c4d2d54c2d0d2e3e05b9266277526e7))
+
 ### [1.0.1](https://github.com/mancioshell/electron-invoice-management/compare/v1.0.0...v1.0.1) (2021-12-29)
 
 
