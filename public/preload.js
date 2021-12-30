@@ -1,7 +1,7 @@
 const { contextBridge, ipcRenderer } = require('electron')
-const backend = require('i18next-electron-fs-backend')
 
-const pdf = require('./pdf')
+const pdf = require('./lib/pdf')
+const fs = require('./lib/fs')
 
 contextBridge.exposeInMainWorld('api', {
   insertSettings: async (newSettings) =>
@@ -45,16 +45,5 @@ contextBridge.exposeInMainWorld('api', {
   },
   getAppVersion: async () => ipcRenderer.invoke('getAppVersion'),
   getAppLocale: async () => ipcRenderer.invoke('getAppLocale'),
-  i18nextElectronBackend: backend.preloadBindings(ipcRenderer)
-})
-
-window.addEventListener('DOMContentLoaded', () => {
-  const replaceText = (selector, text) => {
-    const element = document.getElementById(selector)
-    if (element) element.innerText = text
-  }
-
-  for (const type of ['chrome', 'node', 'electron']) {
-    replaceText(`${type}-version`, process.versions[type])
-  }
+  getLocalFile: fs.getLocalFile
 })

@@ -7,7 +7,7 @@ import { createMemoryHistory } from 'history'
 import { Router } from 'react-router-dom'
 import SettingsContext from 'Contexts/SettingsContext'
 
-import i18NextCustomRender from 'Root/i18n.test'
+import i18NextCustomRender from 'Root/i18next/i18n.test'
 import config from 'Public/locales/it/menu.json'
 
 let settings = {

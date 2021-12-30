@@ -27,7 +27,7 @@ function Footer() {
         </Badge>{' '}
         &nbsp; - &nbsp; Version &nbsp;
         <a
-          href={`https://github.com/mancioshell/electron-virtual-pizzeria-assistant/releases/download/v${appVersion}/VirtualPizzeriaAssistantInstaller.exe`}
+          href={`https://github.com/mancioshell/electron-invoice-management/releases/download/v${appVersion}/InvoiceManagementInstaller.exe`}
           target="_blank"
           rel="noreferrer">
           {appVersion}

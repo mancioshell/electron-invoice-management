@@ -1,7 +1,7 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import Backend from 'i18next-electron-fs-backend'
-import LanguageDetector from './react-electron-language-detector'
+import Backend from './backend'
+import LanguageDetector from './language-detector'
 
 // the translations
 // (tip move them in a JSON file and import them,
@@ -12,8 +12,8 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
-    backend: {
-      loadPath: './public/locales/{{lng}}/{{ns}}.json',      
+    backend: {    
+      loadPath: '/public/locales/{{lng}}/{{ns}}.json',      
       ipcRenderer: window.api.i18nextElectronBackend // important!
     },
     debug: false,
@@ -25,7 +25,7 @@ i18n
       escapeValue: false // react already safes from xss
     },
     react: {
-      useSuspense: false //
+      useSuspense: false
     }
   })
 
