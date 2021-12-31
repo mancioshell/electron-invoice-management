@@ -90,8 +90,8 @@ test('display an error on submitting', async () => {
     expect(screen.getByTestId('cap')).toHaveClass('is-valid')
     expect(screen.getByTestId('city')).toHaveClass('is-valid')
     expect(screen.getByTestId('phone')).toHaveClass('is-valid')
-
-    expect(screen.getByTestId('email')).toHaveClass('is-invalid')
+    expect(screen.getByTestId('email')).toHaveClass('is-valid')
+    
     expect(screen.getByTestId('cf')).toHaveClass('is-invalid')
   })
 })

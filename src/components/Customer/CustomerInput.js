@@ -155,7 +155,7 @@ function CustomerInput() {
             return (
               <Form.Group as={Col} controlId="email">
                 <Form.Label>
-                  <b>{t('email.label')} *</b> :
+                  <b>{t('email.label')}</b> :
                 </Form.Label>
                 <Form.Control
                   type="text"

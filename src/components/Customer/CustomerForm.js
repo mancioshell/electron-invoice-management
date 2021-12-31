@@ -19,7 +19,7 @@ const customerSchema = yup
       .required(),
     city: yup.string().required(),
     phone: yup.string().required(),
-    email: yup.string().email().required(),
+    email: yup.string().email(),
     cf: yup
       .string()
       .matches(
