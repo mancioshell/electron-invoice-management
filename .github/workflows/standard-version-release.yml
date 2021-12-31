@@ -1,8 +1,8 @@
-name: Create Standard Version Release and Push new Tag
+name: Create Standard Version Release
 on: workflow_dispatch
 jobs:
   publish-tag:
-    name: Publish Tag
+    name: Create Standard Version Release and Push new Tag
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -42,15 +42,3 @@ jobs:
           github_token: ${{ secrets.PUSH_TAGS_TOKEN }}
           branch: ${{ github.ref }}
           tags: true
- 
-    #   - name: 'Get Current Tag'
-    #     id: current_tag
-    #     uses: "WyriHaximus/github-action-get-previous-tag@v1"
-
-    #   - uses: jungwinter/split@v1
-    #     id: split
-    #     with:
-    #       msg: ${{ steps.current_tag.outputs.tag }}
-    #       seperator: v
-    # outputs:
-    #   tag: ${{ steps.split.outputs._1 }} 
