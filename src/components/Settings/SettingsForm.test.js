@@ -2,11 +2,16 @@ import React from 'react'
 
 import { waitFor, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
+
+import { configure } from '@testing-library/dom'
+
 import SettingsForm from 'Components/Settings/SettingsForm'
 import userEvent from '@testing-library/user-event'
 
 import i18NextCustomRender from 'Root/i18next/i18n.test'
 import config from 'Public/locales/it/settings-form.json'
+
+configure({ asyncUtilTimeout: 5000 })
 
 let settings = {
   brand: '',

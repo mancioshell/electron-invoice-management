@@ -2,11 +2,15 @@ import React from 'react'
 
 import { waitFor, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
+import { configure } from '@testing-library/dom'
+
 import CustomerForm from './CustomerForm'
 import userEvent from '@testing-library/user-event'
 
 import i18NextCustomRender from 'Root/i18next/i18n.test'
 import config from 'Public/locales/it/customer-form.json'
+
+configure({ asyncUtilTimeout: 5000 })
 
 let customer = {
   name: '',
@@ -91,7 +95,7 @@ test('display an error on submitting', async () => {
     expect(screen.getByTestId('city')).toHaveClass('is-valid')
     expect(screen.getByTestId('phone')).toHaveClass('is-valid')
     expect(screen.getByTestId('email')).toHaveClass('is-valid')
-    
+
     expect(screen.getByTestId('cf')).toHaveClass('is-invalid')
   })
 })
