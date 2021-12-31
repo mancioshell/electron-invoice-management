@@ -14,7 +14,7 @@ import invoiceFormConfig from 'Public/locales/it/invoice-form.json'
 import customerConfig from 'Public/locales/it/customer-form.json'
 import invoiceServiceFormConfig from 'Public/locales/it/invoice-service-form.json'
 
-configure({ asyncUtilTimeout: 5000 })
+configure({ asyncUtilTimeout: 50000 })
 
 const customRender = (ui, renderOptions) => {
   const config = {

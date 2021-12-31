@@ -10,7 +10,7 @@ import userEvent from '@testing-library/user-event'
 import i18NextCustomRender from 'Root/i18next/i18n.test'
 import config from 'Public/locales/it/customer-form.json'
 
-configure({ asyncUtilTimeout: 5000 })
+configure({ asyncUtilTimeout: 50000 })
 
 let customer = {
   name: '',
