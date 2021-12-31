@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.3](https://github.com/mancioshell/electron-invoice-management/compare/v1.0.2...v1.0.3) (2021-12-31)
+
+
+### Bug Fixes
+
+* added icon generation ([4d4c650](https://github.com/mancioshell/electron-invoice-management/commit/4d4c6502aa82b143d79a355402a9dce11f5db924))
+* customer email isn't a mandatory input anymore ([9e1566d](https://github.com/mancioshell/electron-invoice-management/commit/9e1566debad3f36417ee8eef2013acb4c22adef6))
+* fixed backend i18next config path ([9fd60e0](https://github.com/mancioshell/electron-invoice-management/commit/9fd60e06df81dfeff150e1e7d5a3e6e566d1e731))
+* removed pdf footer with generation date ([0a15cb9](https://github.com/mancioshell/electron-invoice-management/commit/0a15cb9ede21afc6253faac6afa32d2130bcd988))
+* renamed github action ([74bfff6](https://github.com/mancioshell/electron-invoice-management/commit/74bfff6aba2c926d9e0d4717496cc9c86b8aadb1))
+
 ### [1.0.2](https://github.com/mancioshell/electron-invoice-management/compare/v1.0.1...v1.0.2) (2021-12-30)
 
 
