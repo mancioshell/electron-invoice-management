@@ -1,4 +1,4 @@
-name: Publish new Tag
+name: Create Standard Version Release and Push new Tag
 on: workflow_dispatch
 jobs:
   publish-tag:
