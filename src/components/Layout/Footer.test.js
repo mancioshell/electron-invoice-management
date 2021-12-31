@@ -7,7 +7,7 @@ import { configure } from '@testing-library/dom'
 
 import Footer from './Footer'
 
-configure({ asyncUtilTimeout: 5000 })
+configure({ asyncUtilTimeout: 50000 })
 
 test('loads and displays footer', async () => {
   render(<Footer />)
