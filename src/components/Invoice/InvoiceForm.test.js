@@ -2,6 +2,9 @@ import React from 'react'
 
 import { waitFor, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
+
+import { configure } from '@testing-library/dom'
+
 import InvoiceForm from 'Components/Invoice/InvoiceForm'
 import SettingsContext from 'Contexts/SettingsContext'
 import userEvent from '@testing-library/user-event'
@@ -10,6 +13,8 @@ import i18NextCustomRender from 'Root/i18next/i18n.test'
 import invoiceFormConfig from 'Public/locales/it/invoice-form.json'
 import customerConfig from 'Public/locales/it/customer-form.json'
 import invoiceServiceFormConfig from 'Public/locales/it/invoice-service-form.json'
+
+configure({ asyncUtilTimeout: 5000 })
 
 const customRender = (ui, renderOptions) => {
   const config = {

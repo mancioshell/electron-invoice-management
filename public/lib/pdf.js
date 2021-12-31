@@ -205,16 +205,16 @@ function generateInvoiceTable(doc, items, taxStamp, settings) {
     )
 }
 
-function generateFooter(doc) {
-  doc
-    .fontSize(10)
-    .text(
-      `Questa fattura è stata generata il ${new Date().toLocaleDateString()} alle ore ${new Date().toLocaleTimeString()}`,
-      50,
-      780,
-      { align: 'center', width: 500 }
-    )
-}
+// function generateFooter(doc) {
+//   doc
+//     .fontSize(10)
+//     .text(
+//       `Questa fattura è stata generata il ${new Date().toLocaleDateString()} alle ore ${new Date().toLocaleTimeString()}`,
+//       50,
+//       780,
+//       { align: 'center', width: 500 }
+//     )
+// }
 
 function generateTableRow(
   doc,

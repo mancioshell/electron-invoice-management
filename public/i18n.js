@@ -1,7 +1,10 @@
 const i18next = require('i18next')
 const Backend = require('i18next-fs-backend')
+const path = require('path')
 
 function initI18Next(lang) {
+  let fileName = path.join(__dirname, `../build/locales/{{lng}}/{{ns}}.json`)
+
   i18next.use(Backend).init({
     initImmediate: false,
     debug: true,
@@ -10,7 +13,7 @@ function initI18Next(lang) {
     fallbackNS: 'backend',
     lng: lang,
     backend: {
-      loadPath: './public/locales/{{lng}}/{{ns}}.json'
+      loadPath: fileName
     }
   })
 
