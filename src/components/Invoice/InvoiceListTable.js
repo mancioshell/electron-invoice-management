@@ -18,7 +18,7 @@ function InvoiceListTable({
   readInvoice,
   printInvoice
 }) {
-  const { t } = useTranslation(['invoice-table-list'])
+  const { t } = useTranslation(['invoice-list-table'])
 
   const actions = React.useCallback((invoice) => (
     <>

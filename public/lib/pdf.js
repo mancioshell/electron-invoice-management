@@ -4,11 +4,11 @@ const PDFDocument = require('pdfkit')
 const publicDir = path.dirname(__dirname)
 const logo = path.join(publicDir, 'gym-logo.png')
 
-function generatePdf(settings, invoice) {
+function generatePdf(i18next, settings, invoice) {
   let doc = new PDFDocument({ size: 'A4', margin: 50 })
 
-  generateHeader(doc, settings)
-  generateCustomerInformation(doc, invoice)
+  generateHeader(i18next, doc, settings)
+  generateCustomerInformation(i18next, doc, invoice)
 
   let items = []
 
@@ -24,14 +24,14 @@ function generatePdf(settings, invoice) {
   for (i = 0; i < items.length; i++) {
     let chunk = items[i]
     if (i > 0) doc.addPage()
-    generateInvoiceTable(doc, chunk, invoice['tax-stamp'], settings)
-    generateFooter(doc)
+    generateInvoiceTable(i18next, doc, chunk, invoice['tax-stamp'], settings)
   }
 
   return doc
 }
 
 function generateHeader(
+  i18next,
   doc,
   { brand, name, surname, address, city, cap, cf, piva }
 ) {
@@ -44,18 +44,21 @@ function generateHeader(
     .text(`${name} ${surname}`, 200, 50, { align: 'right' })
     .text(`${address} ${city} ${cap}`, 200, 65, { align: 'right' })
     .font('Helvetica-Bold')
-    .text('CF: ', 420, 80)
+    .text(i18next.t('pdf.header.cf'), 420, 80)
     .font('Helvetica')
     .text(cf, 200, 80, { align: 'right' })
     .font('Helvetica-Bold')
-    .text('PIVA: ', 450, 95)
+    .text(i18next.t('pdf.header.piva'), 450, 95)
     .font('Helvetica')
     .text(piva, 200, 95, { align: 'right' })
     .moveDown()
 }
 
-function generateCustomerInformation(doc, invoice) {
-  doc.fillColor('#444444').fontSize(20).text('Cliente', 50, 160)
+function generateCustomerInformation(i18next, doc, invoice) {
+  doc
+    .fillColor('#444444')
+    .fontSize(20)
+    .text(i18next.t('pdf.customer.title'), 50, 160)
 
   generateHr(doc, 185)
 
@@ -64,27 +67,27 @@ function generateCustomerInformation(doc, invoice) {
   doc
     .fontSize(10)
     .font('Helvetica-Bold')
-    .text('Numero Fattura:', 50, customerInformationTop)
+    .text(i18next.t('pdf.invoice-number'), 50, customerInformationTop)
     .font('Helvetica')
     .text(invoice.number, 170, customerInformationTop)
     .font('Helvetica-Bold')
 
   doc
-    .text('Data Fattura:', 50, customerInformationTop + 15)
+    .text(i18next.t('pdf.invoice-date'), 50, customerInformationTop + 15)
     .font('Helvetica')
     .text(formatDate(invoice.date), 170, customerInformationTop + 15)
 
   doc
     .font('Helvetica-Bold')
-    .text('Nome:', 250, customerInformationTop)
+    .text(i18next.t('pdf.customer.name'), 250, customerInformationTop)
     .font('Helvetica')
     .text(`${invoice.customer.name}`, 360, customerInformationTop)
     .font('Helvetica-Bold')
-    .text('Cognome:', 250, customerInformationTop + 15)
+    .text(i18next.t('pdf.customer.surname'), 250, customerInformationTop + 15)
     .font('Helvetica')
     .text(`${invoice.customer.surname}`, 360, customerInformationTop + 15)
     .font('Helvetica-Bold')
-    .text('Indirizzo:', 250, customerInformationTop + 30)
+    .text(i18next.t('pdf.customer.address'), 250, customerInformationTop + 30)
     .font('Helvetica')
     .text(
       `${invoice.customer.address} ${invoice.customer.cap} ${invoice.customer.city}`,
@@ -92,11 +95,11 @@ function generateCustomerInformation(doc, invoice) {
       customerInformationTop + 30
     )
     .font('Helvetica-Bold')
-    .text('Codice Fiscale:', 250, customerInformationTop + 45)
+    .text(i18next.t('pdf.customer.cf'), 250, customerInformationTop + 45)
     .font('Helvetica')
     .text(invoice.customer.cf, 360, customerInformationTop + 45)
     .font('Helvetica-Bold')
-    .text('Partita Iva:', 250, customerInformationTop + 60)
+    .text(i18next.t('pdf.customer.piva'), 250, customerInformationTop + 60)
     .font('Helvetica')
     .text(invoice.customer.piva || '-', 360, customerInformationTop + 60)
     .moveDown()
@@ -104,7 +107,7 @@ function generateCustomerInformation(doc, invoice) {
   generateHr(doc, 280)
 }
 
-function generateInvoiceTable(doc, items, taxStamp, settings) {
+function generateInvoiceTable(i18next, doc, items, taxStamp, settings) {
   let i
   const invoiceTableTop = 400
 
@@ -115,11 +118,17 @@ function generateInvoiceTable(doc, items, taxStamp, settings) {
 
   const taxStampTreshold = settings['tax-stamp-treshold']
 
-  doc.fillColor('#444444').fontSize(20).text('Fattura', 50, 330)
+  doc
+    .fillColor('#444444')
+    .fontSize(20)
+    .text(i18next.t('pdf.invoice-title'), 50, 330)
   generateHr(doc, 355)
 
-  if(taxStamp) {
-    doc.fontSize(10).font('Helvetica-Bold').text('Identificativo Marca da Bollo : ', 50, 370)
+  if (taxStamp) {
+    doc
+      .fontSize(10)
+      .font('Helvetica-Bold')
+      .text(i18next.t('pdf.invoice-tax-stamp-id'), 50, 370)
     doc.fontSize(10).font('Helvetica').text(taxStamp, 200, 370)
   }
 
@@ -127,10 +136,10 @@ function generateInvoiceTable(doc, items, taxStamp, settings) {
   generateTableRow(
     doc,
     invoiceTableTop,
-    'Voci Fattura',
-    'Prestazione',
-    'Imponibile',
-    'Importo'
+    i18next.t('pdf.invoice-table-head-first'),
+    i18next.t('pdf.invoice-table-head-second'),
+    i18next.t('pdf.invoice-table-head-third'),
+    i18next.t('pdf.invoice-table-head-fourth')
   )
   generateHr(doc, invoiceTableTop + 15, 50, hrLenght)
 
@@ -153,11 +162,11 @@ function generateInvoiceTable(doc, items, taxStamp, settings) {
   let j = i + 1
 
   let invoice = [
-    { type: 'Totale Imponibile', amount: total },
-    { type: 'Rivalsa previdenziale Inps 4%', amount: iva },
-    { type: 'Totale Fattura', amount: total + iva },
+    { type: i18next.t('pdf.invoice-total'), amount: total },
+    { type: i18next.t('pdf.invoice-iva'), amount: iva },
+    { type: i18next.t('pdf.invoice-total-iva'), amount: total + iva },
     {
-      type: 'Marca da Bollo *',
+      type: i18next.t('pdf.invoice-tax-stamp'),
       amount: total > taxStampTreshold ? settings['tax-stamp-amount'] : '-'
     },
     {
@@ -165,7 +174,7 @@ function generateInvoiceTable(doc, items, taxStamp, settings) {
       amount: ''
     },
     {
-      type: 'Totale a Pagare',
+      type: i18next.t('pdf.invoice-total-tax-stamp'),
       amount:
         total +
         iva +
@@ -188,33 +197,16 @@ function generateInvoiceTable(doc, items, taxStamp, settings) {
     j++
   }
 
-  doc
-    .fontSize(8)
-    .text(
-      '* Imposta di bollo di 2,00 assolta sull’originale se l’importo del compenso lordo della presente fattura è superiore a 77,47 euro.',
-      50,
-      position + 28
-    )
+  let message = `${i18next.t('pdf.invoice-template-string-first')} ${
+    settings['tax-stamp-amount']
+  } ${i18next.t('pdf.invoice-template-string-second')} ${
+    settings['tax-stamp-treshold']
+  } ${i18next.t('pdf.invoice-template-string-third')}`
 
-  doc
-    .fontSize(8)
-    .text(
-      "Si informa che la presente fattura, emessa in duplice copia è soggetta al nuovo regime forfettario di cui all’art. 1, c. 54-89 L. 190/2014 e, pertanto, non viene addebitata l'imposta sul valore aggiunto a titolo di rivalsa e non è soggetta a ritenuta d'acconto.",
-      50,
-      position + 48
-    )
+  doc.fontSize(8).text(message, 50, position + 28)
+
+  doc.fontSize(8).text(i18next.t('pdf.invoice-note'), 50, position + 48)
 }
-
-// function generateFooter(doc) {
-//   doc
-//     .fontSize(10)
-//     .text(
-//       `Questa fattura è stata generata il ${new Date().toLocaleDateString()} alle ore ${new Date().toLocaleTimeString()}`,
-//       50,
-//       780,
-//       { align: 'center', width: 500 }
-//     )
-// }
 
 function generateTableRow(
   doc,

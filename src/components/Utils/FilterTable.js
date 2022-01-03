@@ -9,7 +9,7 @@ function FilterTable({
   setPageSize,
   setGlobalFilter
 }) {
-  const { t } = useTranslation(['table-form'])
+  const { t } = useTranslation(['filter-table'])
 
   return (
     <Row className="mt-5">

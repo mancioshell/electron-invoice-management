@@ -7,7 +7,7 @@ function initI18Next(lang) {
 
   i18next.use(Backend).init({
     initImmediate: false,
-    debug: true,
+    debug: false,
     ns: 'backend',
     defaultNS: 'backend',
     fallbackNS: 'backend',

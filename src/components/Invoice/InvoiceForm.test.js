@@ -12,7 +12,7 @@ import userEvent from '@testing-library/user-event'
 import i18NextCustomRender from 'Root/i18next/i18n.test'
 import invoiceFormConfig from 'Public/locales/it/invoice-form.json'
 import customerConfig from 'Public/locales/it/customer-form.json'
-import invoiceServiceFormConfig from 'Public/locales/it/invoice-service-form.json'
+import invoiceServiceFormConfig from 'Public/locales/it/invoice-service-list-input.json'
 
 configure({ asyncUtilTimeout: 50000 })
 
@@ -141,7 +141,7 @@ test('submitting a InvoiceForm when click Save button', async () => {
     newInvoice.services[0].price.toString()
   )
 
-  await userEvent.click(screen.getByRole('button', { name: /Salva/ }))
+  userEvent.click(screen.getByRole('button', { name: /Salva/ }))
 
   await waitFor(() => {
     expect(saveInvoice).toHaveBeenCalledWith(newInvoice, expect.anything())
@@ -181,7 +181,7 @@ test('submitting InvoiceForm with two services', async () => {
     currentInvoice.services[0].price.toString()
   )
 
-  await userEvent.click(screen.getByRole('button', { name: /Aggiungi/ }))
+  userEvent.click(screen.getByRole('button', { name: /Aggiungi/ }))
 
   userEvent.clear(screen.getAllByLabelText(/Importo/)[1])
 
@@ -234,7 +234,7 @@ test('submitting InvoiceForm which exceeds tax theshold', async () => {
     currentInvoice.services[0].price.toString()
   )
 
-  await userEvent.click(screen.getByRole('button', { name: /Aggiungi/ }))
+  userEvent.click(screen.getByRole('button', { name: /Aggiungi/ }))
 
   userEvent.clear(screen.getAllByLabelText(/Importo/)[1])
 
@@ -291,7 +291,7 @@ test('submitting InvoiceForm with tax stamp', async () => {
     currentInvoice.services[0].price.toString()
   )
 
-  await userEvent.click(screen.getByRole('button', { name: /Aggiungi/ }))
+  userEvent.click(screen.getByRole('button', { name: /Aggiungi/ }))
 
   userEvent.clear(screen.getAllByLabelText(/Importo/)[1])
 

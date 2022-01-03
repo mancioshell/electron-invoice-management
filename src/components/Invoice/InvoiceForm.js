@@ -8,7 +8,7 @@ import { Formik, validateYupSchema, yupToFormErrors } from 'formik'
 import * as yup from 'yup'
 
 import { useTranslation } from 'react-i18next'
-import BlockUi from 'react-block-ui'
+import BlockUi from 'Components/Utils/BlockUI'
 
 import InvoiceInput from 'Components/Invoice/InvoiceInput'
 import InvoiceServiceListInput from 'Components/Invoice/InvoiceServiceListInput'
@@ -85,7 +85,7 @@ function InvoiceForm({ invoice, saveInvoice, searchCustomerInput }) {
 
             <section id="invoice-form-input">
               <h3>
-                <i className="fas fa-file-invoice"></i> Fattura
+                <i className="fas fa-file-invoice"></i> {t('title')}
               </h3>
               <hr className="mt-2"></hr>
 

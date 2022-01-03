@@ -7,7 +7,7 @@ function SearchCustomerInput({ forwardedRef, onChangeCustomer }) {
   const [isLoading, setIsLoading] = useState(false)
   const [customerOptionList, setCustomerOptionList] = useState([])
 
-  const { t } = useTranslation(['search-customer-form'])
+  const { t } = useTranslation(['search-customer-input'])
 
   return (
     <Form.Group controlId="customer">

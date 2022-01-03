@@ -13,7 +13,7 @@ import FilterTable from 'Components/Utils/FilterTable'
 import TablePagination from 'Components/Utils/TablePagination'
 
 function CustomerListTable({ customerList, updateCustomer, createInvoice }) {
-  const { t } = useTranslation(['customer-table-list'])
+  const { t } = useTranslation(['customer-list-table'])
 
   const actions = React.useCallback((customer) => (
     <>

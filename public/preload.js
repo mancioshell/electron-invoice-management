@@ -1,48 +1,75 @@
 const { contextBridge, ipcRenderer } = require('electron')
 
-const pdf = require('./lib/pdf')
+const i18n = require('./i18n')
 const fs = require('./lib/fs')
+const db = require('./lib/db')
+
+const init = async () => {
+  let locale = await ipcRenderer.invoke('getAppLocale')
+  let userData = await ipcRenderer.invoke('getUserData')
+
+  let i18next = i18n.initI18Next(locale)
+
+  let api = db(i18next, userData)
+
+  return [api, i18next]
+}
 
 contextBridge.exposeInMainWorld('api', {
-  insertSettings: async (newSettings) =>
-    ipcRenderer.invoke('insertSettings', newSettings),
-  getSettings: async () => ipcRenderer.invoke('getSettings'),
-  getLastInvoiceNumber: async () => ipcRenderer.invoke('getLastInvoiceNumber'),
-  getInvoiceList: async () => ipcRenderer.invoke('getInvoiceList'),
-  getInvoiceById: async (id) => ipcRenderer.invoke('getInvoiceById', id),
-  removeInvoice: async (invoice) =>
-    ipcRenderer.invoke('removeInvoice', invoice),
-  getCustomerById: async (id) => ipcRenderer.invoke('getCustomerById', id),
-  getCustomerList: async () => ipcRenderer.invoke('getCustomerList'),
-  getCustomerListSuggestions: async (query) =>
-    ipcRenderer.invoke('getCustomerListSuggestions', query),
-  insertCustomer: async (customer) =>
-    ipcRenderer.invoke('insertCustomer', customer),
-  insertInvoice: async (invoice) =>
-    ipcRenderer.invoke('insertInvoice', invoice),
-  printInvoice: async (invoiceId) => {
-    let settings = await ipcRenderer.invoke('getSettings')
-    let invoice = await ipcRenderer.invoke('getInvoiceById', invoiceId)
-
-    let doc = pdf.generatePdf(settings, invoice)
-
-    const fileName = `invoice-${invoiceId}.pdf`
-
-    let buffers = []
-
-    doc.on('data', buffers.push.bind(buffers))
-    doc.on('end', () => {
-      let data = Buffer.concat(buffers)
-
-      const element = document.createElement('a')
-      const file = new Blob([data], { type: 'application/pdf' })
-      element.href = URL.createObjectURL(file)
-      element.download = fileName
-      element.click()
-    })
-
-    doc.end()
+  insertSettings: async (newSettings) => {
+    let [api] = await init()
+    return api.insertSettings(newSettings)
   },
+  getSettings: async () => {
+    let [api] = await init()
+    return api.getSettings()
+  },
+  getLastInvoiceNumber: async () => {
+    let [api] = await init()
+    return api.getLastInvoiceNumber()
+  },
+
+  getInvoiceList: async () => {
+    let [api] = await init()
+    return api.getInvoiceList()
+  },
+  getInvoiceById: async (id) => {
+    let [api] = await init()
+    return api.getInvoiceById(id)
+  },
+  removeInvoice: async (invoice) => {
+    let [api] = await init()
+    return api.removeInvoice(invoice)
+  },
+  insertInvoice: async (invoice) => {
+    let [api] = await init()
+    return api.insertInvoice(invoice)
+  },
+  printInvoice: async (invoiceId) => {
+    let [api, i18next] = await init()
+    let settings = await api.getSettings()
+    let invoice = await api.getInvoiceById(invoiceId)
+
+    fs.printInvoice(i18next, settings, invoice, invoiceId)
+  },
+
+  getCustomerById: async (id) => {
+    let [api] = await init()
+    return api.getCustomerById(id)
+  },
+  getCustomerList: async () => {
+    let [api] = await init()
+    return api.getCustomerList()
+  },
+  getCustomerListSuggestions: async (query) => {
+    let [api] = await init()
+    return api.getCustomerListSuggestions(query)
+  },
+  insertCustomer: async (customer) => {
+    let [api] = await init()
+    return api.insertCustomer(customer)
+  },
+
   getAppVersion: async () => ipcRenderer.invoke('getAppVersion'),
   getAppLocale: async () => ipcRenderer.invoke('getAppLocale'),
   getLocalFile: fs.getLocalFile
