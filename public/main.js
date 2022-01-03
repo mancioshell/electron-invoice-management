@@ -9,10 +9,8 @@ const {
 
 const isDev = require('electron-is-dev')
 const path = require('path')
-const api = require('./lib/db').api
 
 const i18n = require('./i18n')
-let i18next
 
 const server = 'https://automatic-update-electron-invoice-management.vercel.app'
 const url = `${server}/update/${process.platform}/${app.getVersion()}`
@@ -31,7 +29,7 @@ if (require('electron-squirrel-startup')) {
   app.quit()
 }
 
-function createAutoUpdater() {
+function createAutoUpdater(i18next) {
   autoUpdater.setFeedURL({ url })
 
   autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
@@ -66,7 +64,7 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js')
     },
     icon: __dirname + '/favicon.ico'
-  })  
+  })
 
   win.loadURL(
     isDev
@@ -103,9 +101,9 @@ function createWindow() {
 
 app.whenReady().then(() => {
   createWindow()
-  i18next = i18n.initI18Next(app.getLocale())
+  const i18next = i18n.initI18Next(app.getLocale())
 
-  if (!isDev) createAutoUpdater()
+  if (!isDev) createAutoUpdater(i18next)
 
   if (isDev) {
     installExtension(REACT_DEVELOPER_TOOLS)
@@ -113,14 +111,9 @@ app.whenReady().then(() => {
       .catch((error) => console.log(`An error occurred: , ${error}`))
   }
 
-  for (let apiName of Object.keys(api)) {
-    ipcMain.handle(apiName, async (event, arg0, arg1) =>
-      api[apiName](arg0, arg1)
-    )
-  }
-
   ipcMain.handle('getAppVersion', async (event, args) => app.getVersion())
   ipcMain.handle('getAppLocale', async (event, args) => app.getLocale())
+  ipcMain.handle('getUserData', async (event, args) => app.getPath('userData'))
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {

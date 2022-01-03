@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 
 import { useParams, useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import BlockUi from 'react-block-ui'
+import BlockUi from 'Components/Utils/BlockUI'
 
 import InvoiceResumeTable from 'Components/Invoice/InvoiceResumeTable'
 

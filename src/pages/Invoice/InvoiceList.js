@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { Alert, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import BlockUi from 'react-block-ui'
+import BlockUi from 'Components/Utils/BlockUI'
 
 import InvoiceListTable from 'Components/Invoice/InvoiceListTable'
 

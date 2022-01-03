@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next'
 
 
 const InvoiceServiceInput = ({ index, remove, items }) => {
-  const { t } = useTranslation(['invoice-service-form'])
+  const { t } = useTranslation(['invoice-service-list-input'])
 
   return (
     <Row className="mb-3">

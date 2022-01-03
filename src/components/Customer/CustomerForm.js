@@ -2,10 +2,11 @@ import { Form, Button } from 'react-bootstrap'
 import React from 'react'
 import { Formik } from 'formik'
 import * as yup from 'yup'
-import BlockUi from 'react-block-ui'
+
 import { useTranslation } from 'react-i18next'
 
 import CustomerInput from 'Components/Customer/CustomerInput'
+import BlockUi from 'Components/Utils/BlockUI'
 
 const customerSchema = yup
   .object()

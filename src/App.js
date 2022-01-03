@@ -2,7 +2,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-bootstrap-typeahead/css/Typeahead.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'react-datepicker/dist/react-datepicker.css'
-import 'react-block-ui/style.css'
 
 import './App.css'
 

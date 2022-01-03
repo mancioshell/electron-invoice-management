@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 
-import BlockUi from 'react-block-ui'
+import BlockUi from 'Components/Utils/BlockUI'
 import { useTranslation } from 'react-i18next'
 
 import CompanyInput from 'Components/Settings/CompanyInput'
