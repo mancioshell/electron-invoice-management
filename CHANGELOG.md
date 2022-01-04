@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.5](https://github.com/mancioshell/electron-invoice-management/compare/v1.0.4...v1.0.5) (2022-01-04)
+
+
+### Bug Fixes
+
+* fixed localization problem and removed react-block-ui ([b611b8a](https://github.com/mancioshell/electron-invoice-management/commit/b611b8a753f7d07dfbe6c1b391c163047a68893a))
+
 ### [1.0.4](https://github.com/mancioshell/electron-invoice-management/compare/v1.0.3...v1.0.4) (2021-12-31)
 
 ### [1.0.3](https://github.com/mancioshell/electron-invoice-management/compare/v1.0.2...v1.0.3) (2021-12-31)
