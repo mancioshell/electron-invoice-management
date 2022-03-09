@@ -18,7 +18,7 @@ function InvoiceListTable({
   readInvoice,
   printInvoice
 }) {
-  const { t } = useTranslation(['invoice-list-table'])
+  const { t  } = useTranslation(['invoice-list-table'])
 
   const actions = React.useCallback((invoice) => (
     <>
@@ -55,7 +55,7 @@ function InvoiceListTable({
         <i className="fas fa-trash"></i> {t('actions.remove')}
       </Button>
     </>
-  ), [printInvoice, readInvoice, removeInvoice, t, updateInvoice])
+  ), [printInvoice, readInvoice, removeInvoice, updateInvoice, t ])
 
   const data = React.useMemo(
     () =>

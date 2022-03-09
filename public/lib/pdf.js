@@ -24,7 +24,7 @@ function generatePdf(i18next, settings, invoice) {
   for (i = 0; i < items.length; i++) {
     let chunk = items[i]
     if (i > 0) doc.addPage()
-    generateInvoiceTable(i18next, doc, chunk, invoice['tax-stamp'], settings)
+    generateInvoiceTable(i18next, doc, chunk, invoice['taxstamp'], settings)
   }
 
   return doc

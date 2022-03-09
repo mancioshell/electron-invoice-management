@@ -28,7 +28,7 @@ module.exports = (i18next, userData) => {
       if (!currentSettings)
         currentSettings = settings.insert({ ...initSettings })
 
-      await invoices.ensureIndex({ fieldName: 'invoice.number', unique: true })
+      await invoices.ensureIndex({ fieldName: 'number', unique: true })
       return currentSettings
     },
     getLastInvoiceNumber: async () => {
