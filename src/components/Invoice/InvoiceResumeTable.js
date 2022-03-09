@@ -16,13 +16,13 @@ function InvoiceResumeTable({ totalIncome = 0 }) {
   const [iva, setIva] = useState(0)
 
   useEffect(() => {
-    setIva((totalIncome || 0 * 4) / 100)
+    setIva(((totalIncome || 0) * 4) / 100)
   }, [totalIncome])  
 
   const totalInvoice = parseFloat(
     totalIncome >= taxStampTreshold
-      ? totalIncome || 0 + iva + taxStampAmount
-      : totalIncome || 0 + iva
+      ? (totalIncome || 0) + iva + taxStampAmount
+      : (totalIncome || 0) + iva
   ).toFixed(2)
 
   return (

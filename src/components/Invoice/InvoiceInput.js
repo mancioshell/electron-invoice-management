@@ -52,6 +52,7 @@ function InvoiceInput({ totalIncome }) {
                   <b>{t('invoice.date.label')}</b> :
                 </Form.Label>
                 <DatePicker
+                  dateFormat="dd/MM/yyyy"
                   required
                   className={
                     form.submitCount > 0 && meta.touched
