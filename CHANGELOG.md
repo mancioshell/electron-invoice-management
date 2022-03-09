@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.6](https://github.com/mancioshell/electron-invoice-management/compare/v1.0.5...v1.0.6) (2022-03-09)
+
+
+### Bug Fixes
+
+* removed unused keys in invoice object ([22c1f6c](https://github.com/mancioshell/electron-invoice-management/commit/22c1f6c2ebac21377e311d119912764fd7907e98))
+
 ### [1.0.5](https://github.com/mancioshell/electron-invoice-management/compare/v1.0.4...v1.0.5) (2022-01-04)
 
 
