@@ -4,6 +4,7 @@
     "paths": {
       "Components/*": ["./src/components/*"],
       "Contexts/*": ["./src/contexts/*"],
+      "Hooks/*": ["./src/hooks/*"],
       "Providers/*": ["./src/providers/*"],
       "Pages/*": ["./src/pages/*"],
       "Public/*": ["./public/*"],

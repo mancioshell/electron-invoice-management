@@ -18,6 +18,8 @@ import InvoiceResumeTable from 'Components/Invoice/InvoiceResumeTable'
 
 import SettingsContext from 'Contexts/SettingsContext'
 
+import useInvoiceEntry from 'Hooks/useInvoiceEntry'
+
 const InvoiceSchema = yup.object({
   customer: customerSchema,
   date: yup.date().required(),
@@ -43,10 +45,18 @@ const InvoiceSchema = yup.object({
 function InvoiceForm({ invoice, saveInvoice, searchCustomerInput }) {
   const { t } = useTranslation(['invoice-form'])
 
-  const [totalIncome, setTotalIncome] = useState(0)
-
   const { settings } = useContext(SettingsContext)
+
   const taxStampTreshold = settings['tax-stamp-treshold']
+  const taxStampAmount = settings['tax-stamp-amount']
+
+  const [services, setServices] = useState([])
+
+  const invoiceEntry = useInvoiceEntry(
+    services,
+    taxStampTreshold,
+    taxStampAmount
+  )
 
   const resetForm = (actions) => (invoice) => {
     if (invoice) actions.resetForm({ values: invoice })
@@ -60,7 +70,7 @@ function InvoiceForm({ invoice, saveInvoice, searchCustomerInput }) {
       validate={(values) => {
         try {
           validateYupSchema(values, InvoiceSchema, true, {
-            data: { totalIncome, taxStampTreshold }
+            data: { totalIncome: invoiceEntry.totalIncome, taxStampTreshold }
           })
           return {}
         } catch (err) {
@@ -80,7 +90,9 @@ function InvoiceForm({ invoice, saveInvoice, searchCustomerInput }) {
             <section className="mt-5 mb-4" id="invoice-service-form">
               <InvoiceServiceListInput
                 formik={formik}
-                onTotalIcomeChange={setTotalIncome}></InvoiceServiceListInput>
+                onTotalServicesChange={
+                  setServices
+                }></InvoiceServiceListInput>
             </section>
 
             <section id="invoice-form-input">
@@ -89,14 +101,15 @@ function InvoiceForm({ invoice, saveInvoice, searchCustomerInput }) {
               </h3>
               <hr className="mt-2"></hr>
 
-              <InvoiceInput totalIncome={totalIncome}></InvoiceInput>
+              <InvoiceInput
+                totalIncome={invoiceEntry.totalIncome}></InvoiceInput>
             </section>
 
             <section id="invoice-resume-table">
               <Row className="mt-5">
                 <Col md={{ span: 6, offset: 6 }}>
                   <InvoiceResumeTable
-                    totalIncome={totalIncome}></InvoiceResumeTable>
+                    invoiceEntry={invoiceEntry}></InvoiceResumeTable>
                 </Col>
               </Row>
             </section>

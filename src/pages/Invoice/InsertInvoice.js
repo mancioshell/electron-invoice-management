@@ -76,7 +76,7 @@ function InsertInvoice() {
       if (id) history.push(`/invoice-list`) // if i have edited an invoice, come back to invoice-list
 
       if (!id) {
-        resetForm(initInvoice)
+        resetForm({...initInvoice, number: savedInvoice.number + 1})
         ref.current.clear()
       }
 

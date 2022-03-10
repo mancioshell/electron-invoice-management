@@ -1,13 +1,9 @@
 import React, { useEffect } from 'react'
 import { Form, Button, Col, Row } from 'react-bootstrap'
 
-import {
-  Field,
-  FieldArray
-} from 'formik'
+import { Field, FieldArray } from 'formik'
 
 import { useTranslation } from 'react-i18next'
-
 
 const InvoiceServiceInput = ({ index, remove, items }) => {
   const { t } = useTranslation(['invoice-service-list-input'])
@@ -87,58 +83,54 @@ const InvoiceServiceInput = ({ index, remove, items }) => {
   )
 }
 
-function InvoiceServiceListInput({ formik, onTotalIcomeChange }) {
-    const { t } = useTranslation(['invoice-form'])
-  
-    useEffect(() => {
-      const totalIcome = formik.values.services.reduce(
-        (curr, next) => curr + next.price,
-        0
-      )
-      onTotalIcomeChange(totalIcome)
-    }, [onTotalIcomeChange, formik.values.services])
-  
-    return (
-      <FieldArray
-        name="services"
-        render={(arrayHelpers) => {
-          return (
-            <>
-              <Row>
-                <Col>
-                  <h4 className="mt-3">
-                    <i className="fas fa-dumbbell"></i> {t('service-list.label')}
-                  </h4>
-                  <hr className="mt-2"></hr>
-                </Col>
-              </Row>
-              {formik.values.services.map((item, index) => (
-                <InvoiceServiceInput
-                  key={index}
-                  index={index}
-                  remove={arrayHelpers.remove}
-                  items={formik.values.services}
-                />
-              ))}
-  
-              <Row>
-                <Col>
-                  <span className="btn-group float-right">
-                    <Button
-                      variant="dark"
-                      type="button"
-                      size="sm"
-                      onClick={() => arrayHelpers.push({ type: '', price: 1 })}>
-                      <i className="fas fa-plus"></i> {t('service-list.button')}
-                    </Button>
-                  </span>
-                </Col>
-              </Row>
-            </>
-          )
-        }}
-      />
-    )
-  }
+function InvoiceServiceListInput({ formik, onTotalServicesChange }) {
+  const { t } = useTranslation(['invoice-form'])
 
-  export default InvoiceServiceListInput
+  useEffect(() => {  
+    onTotalServicesChange(formik.values.services)
+  }, [onTotalServicesChange, formik.values.services])
+
+  return (
+    <FieldArray
+      name="services"
+      render={(arrayHelpers) => {
+        return (
+          <>
+            <Row>
+              <Col>
+                <h4 className="mt-3">
+                  <i className="fas fa-dumbbell"></i> {t('service-list.label')}
+                </h4>
+                <hr className="mt-2"></hr>
+              </Col>
+            </Row>
+            {formik.values.services.map((item, index) => (
+              <InvoiceServiceInput
+                key={index}
+                index={index}
+                remove={arrayHelpers.remove}
+                items={formik.values.services}
+              />
+            ))}
+
+            <Row>
+              <Col>
+                <span className="btn-group float-right">
+                  <Button
+                    variant="dark"
+                    type="button"
+                    size="sm"
+                    onClick={() => arrayHelpers.push({ type: '', price: 1 })}>
+                    <i className="fas fa-plus"></i> {t('service-list.button')}
+                  </Button>
+                </span>
+              </Col>
+            </Row>
+          </>
+        )
+      }}
+    />
+  )
+}
+
+export default InvoiceServiceListInput
