@@ -113,8 +113,12 @@ function generateInvoiceTable(i18next, doc, items, taxStamp, settings) {
 
   const hrLenght = 500
 
+  const extractIva = (tot) => (tot * 100) / (100 + 4)
+
   const total = items.reduce((curr, next) => curr + next.price, 0)
-  const iva = (total * 4) / 100
+
+  const totalIncome = extractIva(total)
+  const totalIva = (totalIncome * 4) / 100
 
   const taxStampTreshold = settings['tax-stamp-treshold']
 
@@ -162,12 +166,12 @@ function generateInvoiceTable(i18next, doc, items, taxStamp, settings) {
   let j = i + 1
 
   let invoice = [
-    { type: i18next.t('pdf.invoice-total'), amount: total },
-    { type: i18next.t('pdf.invoice-iva'), amount: iva },
-    { type: i18next.t('pdf.invoice-total-iva'), amount: total + iva },
+    { type: i18next.t('pdf.invoice-total'), amount: totalIncome },
+    { type: i18next.t('pdf.invoice-iva'), amount: totalIva },
+    { type: i18next.t('pdf.invoice-total-iva'), amount: totalIncome + totalIva },
     {
       type: i18next.t('pdf.invoice-tax-stamp'),
-      amount: total > taxStampTreshold ? settings['tax-stamp-amount'] : '-'
+      amount: totalIncome > taxStampTreshold ? settings['tax-stamp-amount'] : '-'
     },
     {
       type: '',
@@ -176,9 +180,9 @@ function generateInvoiceTable(i18next, doc, items, taxStamp, settings) {
     {
       type: i18next.t('pdf.invoice-total-tax-stamp'),
       amount:
-        total +
-        iva +
-        (total > taxStampTreshold ? settings['tax-stamp-amount'] : 0)
+      totalIncome +
+        totalIva +
+        (totalIncome > taxStampTreshold ? settings['tax-stamp-amount'] : 0)
     }
   ]
 

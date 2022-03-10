@@ -1,11 +1,15 @@
 import { Card, Button } from 'react-bootstrap'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
 import { useParams, useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import BlockUi from 'Components/Utils/BlockUI'
 
+import SettingsContext from 'Contexts/SettingsContext'
+
 import InvoiceResumeTable from 'Components/Invoice/InvoiceResumeTable'
+
+import useInvoiceEntry from 'Hooks/useInvoiceEntry'
 
 const initInvoice = {
   customer: {
@@ -37,23 +41,26 @@ function Invoice() {
   const { t } = useTranslation(['invoice'])
 
   const [invoice, setInvoice] = useState(initInvoice)
-  const [totalIncome, setTotalIncome] = useState(0)
+
+  const { settings } = useContext(SettingsContext)
+
+  const taxStampTreshold = settings['tax-stamp-treshold']
+  const taxStampAmount = settings['tax-stamp-amount']
 
   useEffect(() => {
     const getCurrentInvoice = async () => {
       let currentInvoice = await window?.api?.getInvoiceById(id)
-
-      let totalIncome = currentInvoice.services.reduce(
-        (curr, next) => curr + next.price,
-        0
-      )
-
-      setTotalIncome(totalIncome)
       setInvoice(currentInvoice)
     }
 
     getCurrentInvoice()
   }, [id])
+
+  const invoiceEntry = useInvoiceEntry(
+    invoice.services || [],
+    taxStampTreshold,
+    taxStampAmount
+  )
 
   const printReceipt = async () => {
     await window?.api?.printInvoice(invoice._id)
@@ -95,7 +102,7 @@ function Invoice() {
             <strong>{t('label.invoice-resume')}:</strong>
           </Card.Text>
 
-          <InvoiceResumeTable totalIncome={totalIncome}></InvoiceResumeTable>
+          <InvoiceResumeTable invoiceEntry={invoiceEntry}></InvoiceResumeTable>
 
           <hr />
 
