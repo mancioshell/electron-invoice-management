@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/mancioshell/electron-invoice-management/compare/v1.0.6...v1.1.0) (2022-03-10)
+
+
+### Features
+
+* added iva extraction from total income ([8ddbd93](https://github.com/mancioshell/electron-invoice-management/commit/8ddbd93e6e9469f7bea39b2908a2ba54306eda39))
+
 ### [1.0.6](https://github.com/mancioshell/electron-invoice-management/compare/v1.0.5...v1.0.6) (2022-03-09)
 
 
