@@ -11,6 +11,7 @@ const isDev = require('electron-is-dev')
 const path = require('path')
 
 const i18n = require('./i18n')
+const backup = require('./lib/backup')
 
 const server = 'https://automatic-update-electron-invoice-management.vercel.app'
 const url = `${server}/update/${process.platform}/${app.getVersion()}`
@@ -99,9 +100,11 @@ function createWindow() {
   }
 }
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
   createWindow()
   const i18next = i18n.initI18Next(app.getLocale())
+
+  await backup.backupDatabases(app.getPath('userData'))
 
   if (!isDev) createAutoUpdater(i18next)
 
