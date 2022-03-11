@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/mancioshell/electron-invoice-management/compare/v1.1.0...v1.2.0) (2022-03-11)
+
+
+### Features
+
+* daily databases backup with rotate feature ([8503d75](https://github.com/mancioshell/electron-invoice-management/commit/8503d752674d4323cd1fe14f26ecb15b77a516ce))
+
+
+### Bug Fixes
+
+* added custom sort function to invoice datetime ([0b2c880](https://github.com/mancioshell/electron-invoice-management/commit/0b2c880f7aa178713d7333ecec1d1f4866150bf0))
+
 ## [1.1.0](https://github.com/mancioshell/electron-invoice-management/compare/v1.0.6...v1.1.0) (2022-03-10)
 
 
