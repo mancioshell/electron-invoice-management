@@ -6,6 +6,7 @@
         "remove": "Rimuovi"
     },
     "columns": {
+        "number": "Numero Fattura",
         "name": "Nome",
         "surname": "Cognome",
         "address": "Indirizzo",
