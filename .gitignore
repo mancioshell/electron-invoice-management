@@ -15,3 +15,6 @@ yarn-debug.log*
 yarn-error.log*
 
 public/gym-logo.psd
+
+utility.exe
+public/lib/utility.js
