@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/mancioshell/electron-invoice-management/compare/v1.2.0...v1.2.1) (2022-03-11)
+
+
+### Bug Fixes
+
+* moved blob and zip deps from devDependencies to dependencies ([6592afb](https://github.com/mancioshell/electron-invoice-management/commit/6592afb17fbd21c410cefe184a231e73931ba042))
+
 ## [1.2.0](https://github.com/mancioshell/electron-invoice-management/compare/v1.1.0...v1.2.0) (2022-03-11)
 
 
