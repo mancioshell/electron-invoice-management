@@ -21,18 +21,25 @@ const customerSchema = yup
     city: yup.string().required(),
     phone: yup.string().required(),
     email: yup.string().email(),
-    cf: yup
-      .string()
-      .matches(
-        /^[A-Za-z]{6}[0-9]{2}[A-Za-z]{1}[0-9]{2}[A-Za-z]{1}[0-9]{3}[A-Za-z]{1}$/,
-        { excludeEmptyString: true }
-      )
-      .required(),
-    piva: yup.string().matches(/^[0-9]{11}$/, { excludeEmptyString: true })
+    piva: yup.string().matches(/^[0-9]{11}$/, { excludeEmptyString: true }),
+    cf: yup.string()
+    .when('piva', {
+      is: (val) => {
+        return !!val && val.match(/^[0-9]{11}$/gi);
+      },
+      then: (schema) => schema.notRequired(),
+      otherwise: (schema) =>
+        schema
+          .matches(
+            /^[A-Za-z]{6}[0-9]{2}[A-Za-z]{1}[0-9]{2}[A-Za-z]{1}[0-9]{3}[A-Za-z]{1}$/,
+            { excludeEmptyString: true }
+          )
+          .required()
+    })
   })
   .required()
 
-const schema = yup.object().shape({
+  const schema = yup.object().shape({
   customer: customerSchema
 })
 
