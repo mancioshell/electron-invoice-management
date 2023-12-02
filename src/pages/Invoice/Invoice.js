@@ -76,7 +76,7 @@ function Invoice() {
       <Card border="secondary">
         <Card.Header as="h5">
           <i className="fas fa-file-invoice"></i> {t('label.invoice-number')}:
-          {invoice.number}
+          {invoice.number}/{invoice.date.getFullYear()}
         </Card.Header>
         <Card.Body>
           <Card.Title>

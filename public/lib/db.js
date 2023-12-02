@@ -27,16 +27,35 @@ module.exports = (i18next, userData) => {
       let currentSettings = await settings.findOne({ id: 'settings' })
       if (!currentSettings)
         currentSettings = settings.insert({ ...initSettings })
+ 
+      let invoiceList = await invoices.find()
+      /**
+       * 
+       * Update saved invoice, adding numberDate field, which is the new index
+       */
+      for (const invoice of invoiceList) {
+        if(!invoice.numberDate){
+          await invoices.update(
+            { _id: invoice._id },
+            {
+              ...invoice,
+              numberDate: `${invoice.number}-${invoice.date.getFullYear()}`
+            }
+          )
+        }
+      }
 
-      await invoices.ensureIndex({ fieldName: 'number', unique: true })
+      await invoices.ensureIndex({ fieldName: 'numberDate', unique: true })
       return currentSettings
     },
     getLastInvoiceNumber: async () => {
       let invoiceList = await invoices.find()
-      let lastInvoiceNumber = invoiceList.reduce(
-        (curr, next) => Math.max(curr, next.number),
-        0
-      )
+      let currentYear = new Date().getFullYear()
+      let lastInvoiceNumber = invoiceList
+        .filter((elem) => {
+          return elem.date.getFullYear() === currentYear
+        })
+        .reduce((curr, next) => Math.max(curr, next.number), 0)
       return lastInvoiceNumber
     },
     getInvoiceList: async () => {
@@ -104,7 +123,12 @@ module.exports = (i18next, userData) => {
           customer: newCustomer._id,
           createdAt: new Date()
         })
-        return { ...invoice, customer: newCustomer, _id: result._id }
+        return {
+          ...invoice,
+          numberDate: `${invoice.number}-${invoice.date.getFullYear()}`,
+          customer: newCustomer,
+          _id: result._id
+        }
       }
     }
   }
