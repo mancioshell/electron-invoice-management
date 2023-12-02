@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.3](https://github.com/mancioshell/electron-invoice-management/compare/v1.2.0...v1.2.3) (2023-12-02)
+
+
+### Bug Fixes
+
+* cf is conditionally required if piva exists ([600e013](https://github.com/mancioshell/electron-invoice-management/commit/600e01301d550a3a73061314acb3ebab2f74d365))
+* move index from number to numberDate ([9715c54](https://github.com/mancioshell/electron-invoice-management/commit/9715c547021edaeb694d38a58fd751891962369b))
+* moved blob and zip deps from devDependencies to dependencies ([6592afb](https://github.com/mancioshell/electron-invoice-management/commit/6592afb17fbd21c410cefe184a231e73931ba042))
+
 ### [1.2.2](https://github.com/mancioshell/electron-invoice-management/compare/v1.2.0...v1.2.2) (2023-12-02)
 
 
