@@ -65,7 +65,7 @@ function InvoiceListTable({
       invoiceList.map(({ number, customer, date, _id }) => {
         const { name, surname, address } = customer
         return {
-          number,
+          number: `${number}/${date.getFullYear()}`,
           name,
           surname,
           address,

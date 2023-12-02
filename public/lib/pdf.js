@@ -69,7 +69,7 @@ function generateCustomerInformation(i18next, doc, invoice) {
     .font('Helvetica-Bold')
     .text(i18next.t('pdf.invoice-number'), 50, customerInformationTop)
     .font('Helvetica')
-    .text(invoice.number, 170, customerInformationTop)
+    .text(`${invoice.number}/${invoice.date.getFullYear()}`, 170, customerInformationTop)
     .font('Helvetica-Bold')
 
   doc
