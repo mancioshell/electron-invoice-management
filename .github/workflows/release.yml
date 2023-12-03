@@ -9,7 +9,7 @@ jobs:
   extract-tag:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: 'Get Current Tag'
@@ -34,9 +34,9 @@ jobs:
           fetch-depth: 0
 
       - name: Make
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: "16"
+          node-version: "20"
       - run: yarn install
       - run: yarn icon
       - run: yarn make
