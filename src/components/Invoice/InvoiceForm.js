@@ -42,7 +42,7 @@ const InvoiceSchema = yup.object({
     .required()
 })
 
-function InvoiceForm({ invoice, saveInvoice, searchCustomerInput }) {
+function InvoiceForm({ invoice, saveInvoice, searchCustomerInput, onChangeDate }) {
   const { t } = useTranslation(['invoice-form'])
 
   const { settings } = useContext(SettingsContext)
@@ -102,7 +102,7 @@ function InvoiceForm({ invoice, saveInvoice, searchCustomerInput }) {
               <hr className="mt-2"></hr>
 
               <InvoiceInput
-                totalIncome={invoiceEntry.totalIncome}></InvoiceInput>
+                totalIncome={invoiceEntry.totalIncome} onChangeDate={onChangeDate}></InvoiceInput>
             </section>
 
             <section id="invoice-resume-table">

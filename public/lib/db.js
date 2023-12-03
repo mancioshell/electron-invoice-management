@@ -48,9 +48,9 @@ module.exports = (i18next, userData) => {
       await invoices.ensureIndex({ fieldName: 'numberDate', unique: true })
       return currentSettings
     },
-    getLastInvoiceNumber: async () => {
+    getLastInvoiceNumber: async (date) => {
       let invoiceList = await invoices.find()
-      let currentYear = new Date().getFullYear()
+      let currentYear = date.getFullYear()
       let lastInvoiceNumber = invoiceList
         .filter((elem) => {
           return elem.date.getFullYear() === currentYear

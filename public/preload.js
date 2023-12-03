@@ -24,9 +24,9 @@ contextBridge.exposeInMainWorld('api', {
     let [api] = await init()
     return api.getSettings()
   },
-  getLastInvoiceNumber: async () => {
+  getLastInvoiceNumber: async (date) => {
     let [api] = await init()
-    return api.getLastInvoiceNumber()
+    return api.getLastInvoiceNumber(date)
   },
 
   getInvoiceList: async () => {

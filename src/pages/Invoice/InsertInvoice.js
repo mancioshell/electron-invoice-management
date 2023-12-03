@@ -57,26 +57,35 @@ function InsertInvoice() {
     }
 
     const getLastInvoiceNumber = async () => {
-      let lastInvoiceNumber = await window?.api?.getLastInvoiceNumber()     
+      let lastInvoiceNumber = await window?.api?.getLastInvoiceNumber(
+        invoice.date
+      )
       setInvoice((invoice) => ({
         ...invoice,
         number: lastInvoiceNumber + 1
       }))
-    }
+    }  
 
     if (id) getCurrentInvoice() // edit invoice
     if (!id) getLastInvoiceNumber() // if is a new invoice, get last invoice number
     if (customerId) getCurrentCustomer() // new invoice with existing customer
-  }, [id, customerId])
+  }, [id, customerId, invoice.date])
 
-  const saveInvoice = async (savedInvoice, resetForm) => {    
+  const setInvoiceDate = async (date) => {
+    setInvoice((invoice) => ({
+      ...invoice,
+      date: date
+    }))
+  }
+
+  const saveInvoice = async (savedInvoice, resetForm) => {
     try {
       await window?.api?.insertInvoice(savedInvoice)
 
       if (id) history.push(`/invoice-list`) // if i have edited an invoice, come back to invoice-list
 
       if (!id) {
-        resetForm({...initInvoice, number: savedInvoice.number + 1})
+        resetForm({ ...initInvoice, number: savedInvoice.number + 1 })
         ref.current.clear()
       }
 
@@ -125,6 +134,9 @@ function InsertInvoice() {
         <InvoiceForm
           invoice={invoice}
           saveInvoice={saveInvoice}
+          onChangeDate={(date) => {
+            setInvoiceDate(date)
+          }}
           searchCustomerInput={(formik) => {
             return (
               <SearchCustomerInputRef

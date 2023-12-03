@@ -6,7 +6,7 @@ import DatePicker from 'react-datepicker'
 
 import SettingsContext from 'Contexts/SettingsContext'
 
-function InvoiceInput({ totalIncome }) {
+function InvoiceInput({ totalIncome, onChangeDate }) {
   const { t } = useTranslation(['invoice-form'])
 
   const { settings } = useContext(SettingsContext)
@@ -63,7 +63,10 @@ function InvoiceInput({ totalIncome }) {
                   }
                   data-testid="date"
                   selected={field.value}
-                  onChange={(date) => form.setFieldValue('date', date)}
+                  onChange={(date) => {
+                    form.setFieldValue('date', date)
+                    onChangeDate(date)
+                  }}
                   placeholderText={t('invoice.date.placeholder')}></DatePicker>
 
                 {form.submitCount > 0 && meta.touched && meta.error ? (
