@@ -120,6 +120,7 @@ module.exports = (i18next, userData) => {
       } else {
         let result = await invoices.insert({
           ...invoice,
+          numberDate: `${invoice.number}-${invoice.date.getFullYear()}`,
           customer: newCustomer._id,
           createdAt: new Date()
         })
