@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.5](https://github.com/mancioshell/electron-invoice-management/compare/v1.2.3...v1.2.5) (2024-01-03)
+
+
+### Bug Fixes
+
+* change invoice number on change invoice date ([a9a90cf](https://github.com/mancioshell/electron-invoice-management/commit/a9a90cf725d66e95e7b9c8ff44c67de3dd7ccdd9))
+* invoice issue ([248ed3d](https://github.com/mancioshell/electron-invoice-management/commit/248ed3d6369c772b041ec317afb10fab28ca157d))
+* issue with invoice form ([6c66f0c](https://github.com/mancioshell/electron-invoice-management/commit/6c66f0cb7cb5ab9ebe454c891862ef8fcb4c8811))
+
 ### [1.2.3](https://github.com/mancioshell/electron-invoice-management/compare/v1.2.0...v1.2.3) (2023-12-02)
 
 
