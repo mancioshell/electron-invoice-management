@@ -45,17 +45,24 @@ function InsertInvoice() {
 
   const [invoice, setInvoice] = useState(initInvoice)
 
-  useEffect(() => {
+  useEffect(() => {    
     const getCurrentInvoice = async () => {
       let currentInvoice = await window?.api?.getInvoiceById(id)
       setInvoice(currentInvoice)
     }
 
+    if (id) getCurrentInvoice() // edit invoice
+  }, [id])
+
+  useEffect(() => {
     const getCurrentCustomer = async () => {
       let customer = await window?.api?.getCustomerById(customerId)
       setInvoice((invoice) => ({ ...invoice, customer }))
     }
+    if (customerId) getCurrentCustomer() // new invoice with existing customer
+  }, [customerId])
 
+  useEffect(() => {
     const getLastInvoiceNumber = async () => {
       let lastInvoiceNumber = await window?.api?.getLastInvoiceNumber(
         invoice.date
@@ -64,12 +71,11 @@ function InsertInvoice() {
         ...invoice,
         number: lastInvoiceNumber + 1
       }))
-    }  
+    }
 
-    if (id) getCurrentInvoice() // edit invoice
     if (!id) getLastInvoiceNumber() // if is a new invoice, get last invoice number
-    if (customerId) getCurrentCustomer() // new invoice with existing customer
-  }, [id, customerId, invoice.date])
+    ref.current.clear()
+  }, [id, invoice.date])
 
   const setInvoiceDate = async (date) => {
     setInvoice((invoice) => ({
@@ -85,7 +91,8 @@ function InsertInvoice() {
       if (id) history.push(`/invoice-list`) // if i have edited an invoice, come back to invoice-list
 
       if (!id) {
-        resetForm({ ...initInvoice, number: savedInvoice.number + 1 })
+        resetForm({ ...initInvoice })
+        setInvoice(initInvoice)
         ref.current.clear()
       }
 
