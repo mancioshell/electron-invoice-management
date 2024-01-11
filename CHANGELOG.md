@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/mancioshell/electron-invoice-management/compare/v1.2.5...v1.3.0) (2024-01-11)
+
+
+### Features
+
+* added einvoice generation ([89d1d0b](https://github.com/mancioshell/electron-invoice-management/commit/89d1d0bdcefa6549dd3397fd3bbdd12a80d82218))
+
 ### [1.2.5](https://github.com/mancioshell/electron-invoice-management/compare/v1.2.3...v1.2.5) (2024-01-03)
 
 
