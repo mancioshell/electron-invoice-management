@@ -12,6 +12,20 @@ function InvoiceInput({ totalIncome, onChangeDate }) {
   const { settings } = useContext(SettingsContext)
 
   const taxStampTreshold = settings['tax-stamp-treshold']
+  const paymentOptions = [
+    {
+      label: 'Contanti',
+      value: 'MP01'
+    },
+    {
+      label: 'Bonifico',
+      value: 'MP05'
+    },
+    {
+      label: 'Carta',
+      value: 'MP08'
+    }
+  ]
 
   return (
     <Row>
@@ -43,7 +57,7 @@ function InvoiceInput({ totalIncome, onChangeDate }) {
         </Field>
       </Col>
 
-      <Col md="4">
+      <Col md="2">
         <Field name={`date`}>
           {({ field, form, meta }) => {
             return (
@@ -72,6 +86,48 @@ function InvoiceInput({ totalIncome, onChangeDate }) {
                 {form.submitCount > 0 && meta.touched && meta.error ? (
                   <span className="manual-invalid-feedback">
                     {t('invoice.date.feedback')}
+                  </span>
+                ) : null}
+              </Form.Group>
+            )
+          }}
+        </Field>
+      </Col>
+
+      <Col md="2">
+        <Field name={`payment`}>
+          {({ field, form, meta }) => {
+            return (
+              <Form.Group controlId="payment">
+                <Form.Label>
+                  <b>{t('invoice.payment.label')} *</b> :
+                </Form.Label>
+
+                <Form.Control
+                  as="select"
+                  name={`invoice-payment`}
+                  data-testid={`invoice-payment`}
+                  isValid={form.submitCount > 0 && meta.touched && !meta.error}
+                  isInvalid={form.submitCount > 0 && meta.touched && meta.error}
+                  required
+                  value={field.value}
+                  onChange={(e) => {
+                    form.setFieldValue('payment', e.target.value)
+                  }}
+                  custom>
+                  <>
+                    <option value=""></option>
+                    {paymentOptions.map((option) => (
+                      <option value={option.value} key={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </>
+                </Form.Control>
+
+                {form.submitCount > 0 && meta.touched && meta.error ? (
+                  <span className="manual-invalid-feedback">
+                    {t('invoice.payment.feedback')}
                   </span>
                 ) : null}
               </Form.Group>

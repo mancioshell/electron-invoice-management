@@ -28,6 +28,7 @@ const initInvoice = {
   },
   date: new Date(),
   number: 0,
+  payment: '',
   taxstamp: '',
   services: [
     {

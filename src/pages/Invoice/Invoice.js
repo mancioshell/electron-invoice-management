@@ -26,6 +26,7 @@ const initInvoice = {
   date: new Date(),
   number: 0,
   taxstamp: '',
+  payment: '',
   services: [
     {
       type: '',
@@ -64,6 +65,10 @@ function Invoice() {
 
   const printReceipt = async () => {
     await window?.api?.printInvoice(invoice._id)
+  }
+
+  const printEInvoice = async () => {
+    await window?.api?.printEInvoice(invoice._id)
   }
 
   const invoiceList = (e) => {
@@ -107,7 +112,10 @@ function Invoice() {
           <hr />
 
           <Button className="mr-2 mb-2" variant="info" onClick={printReceipt}>
-            <i className="fas fa-print"></i> {t('button.print')}
+            <i className="fas fa-file-pdf"></i> {t('button.print')}
+          </Button>
+          <Button className="mr-2 mb-2" variant="success" onClick={printEInvoice}>
+            <i className="fas fa-file-invoice"></i> {t('button.eprint')}
           </Button>
           <Button className="mr-2 mb-2" variant="primary" onClick={invoiceList}>
             <i className="fas fa-clipboard-list"></i> {t('button.invoice-list')}

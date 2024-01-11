@@ -1,5 +1,6 @@
 const fs = require('fs')
 const pdf = require('./pdf')
+const xml = require('./xml')
 
 const path = require('path')
 
@@ -30,5 +31,16 @@ module.exports = {
     })
 
     doc.end()
+  },
+  printEInvoice: (settings, invoice, invoiceId) => {
+    let data = xml.generateXml(settings, invoice)
+
+    const fileName = `invoice-${invoiceId}.xml`
+
+    const element = document.createElement('a')
+    const file = new Blob([data], { type: 'application/xml' })
+    element.href = URL.createObjectURL(file)
+    element.download = fileName
+    element.click()
   }
 }

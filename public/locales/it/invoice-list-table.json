@@ -2,7 +2,8 @@
     "actions": {
         "view": "Visualizza",
         "modify": "Modifica",
-        "print": "Stampa",
+        "print": "Fattura",
+        "eprint": "Fattura Elettronica",
         "remove": "Rimuovi"
     },
     "columns": {

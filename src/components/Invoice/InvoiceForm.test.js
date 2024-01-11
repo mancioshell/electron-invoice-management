@@ -60,6 +60,7 @@ let invoice = {
     piva: ''
   },
   date: currentDate,
+  payment: '',
   number: 1,
   taxstamp: '',
   services: [
@@ -82,6 +83,7 @@ let newInvoice = {
     cf: 'JHNDOE72E04H501T',
     piva: ''
   },
+  payment: 'MP05',
   date: currentDate,
   number: 1,
   taxstamp: '',
@@ -140,6 +142,11 @@ test('submitting a InvoiceForm when click Save button', async () => {
     screen.getByLabelText(/Importo \*/),
     newInvoice.services[0].price.toString()
   )
+  
+  userEvent.selectOptions(
+    screen.getByLabelText(/Tipo Pagamento \*/),
+    newInvoice.payment
+  )
 
   userEvent.click(screen.getByRole('button', { name: /Salva/ }))
 
@@ -179,6 +186,11 @@ test('submitting InvoiceForm with two services', async () => {
   userEvent.type(
     screen.getByLabelText(/Importo \*/),
     currentInvoice.services[0].price.toString()
+  )
+
+  userEvent.selectOptions(
+    screen.getByLabelText(/Tipo Pagamento \*/),
+    newInvoice.payment
   )
 
   userEvent.click(screen.getByRole('button', { name: /Aggiungi/ }))
@@ -247,6 +259,11 @@ test('submitting InvoiceForm which exceeds tax theshold', async () => {
     currentInvoice.services[1].price.toString()
   )
 
+  userEvent.selectOptions(
+    screen.getByLabelText(/Tipo Pagamento \*/),
+    newInvoice.payment
+  )
+
   userEvent.click(screen.getByRole('button', { name: /Salva/ }))
 
   await waitFor(() => {
@@ -302,6 +319,11 @@ test('submitting InvoiceForm with tax stamp', async () => {
   userEvent.type(
     screen.getAllByLabelText(/Importo \*/)[1],
     currentInvoice.services[1].price.toString()
+  )
+
+  userEvent.selectOptions(
+    screen.getByLabelText(/Tipo Pagamento \*/),
+    newInvoice.payment
   )
 
   userEvent.type(

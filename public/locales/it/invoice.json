@@ -9,7 +9,8 @@
   },
 
   "button": {
-    "print": "Stampa",
+    "print": "Fattura",
+    "eprint": "Fattura Elettronica",
     "invoice-list": "Lista Fatture"
   }
 }

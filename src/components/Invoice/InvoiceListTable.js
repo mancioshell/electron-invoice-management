@@ -16,7 +16,8 @@ function InvoiceListTable({
   updateInvoice,
   removeInvoice,
   readInvoice,
-  printInvoice
+  printInvoice,
+  printEInvoice
 }) {
   const { t } = useTranslation(['invoice-list-table'])
 
@@ -45,7 +46,15 @@ function InvoiceListTable({
           type="button"
           size="sm"
           onClick={(e) => printInvoice(invoice)}>
-          <i className="fas fa-print"></i> {t('actions.print')}
+          <i className="fas fa-file-pdf"></i> {t('actions.print')}
+        </Button>
+        <Button
+          className="mr-2 mb-2"
+          variant="success"
+          type="button"
+          size="sm"
+          onClick={(e) => printEInvoice(invoice)}>
+          <i className="fas fa-file-invoice"></i> {t('actions.eprint')}
         </Button>
         <Button
           className="mr-2 mb-2"

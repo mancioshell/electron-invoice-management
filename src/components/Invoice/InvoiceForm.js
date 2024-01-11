@@ -23,6 +23,7 @@ import useInvoiceEntry from 'Hooks/useInvoiceEntry'
 const InvoiceSchema = yup.object({
   customer: customerSchema,
   date: yup.date().required(),
+  payment: yup.string().oneOf(["MP01","MP05", "MP08"]).required(),
   number: yup.number().required(),
   taxstamp: yup.string().when('$data', (data, schema) => {
     return data?.totalIncome >= data?.taxStampTreshold

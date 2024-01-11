@@ -52,6 +52,13 @@ contextBridge.exposeInMainWorld('api', {
 
     fs.printInvoice(i18next, settings, invoice, invoiceId)
   },
+  printEInvoice: async (invoiceId) => {
+    let [api] = await init()
+    let settings = await api.getSettings()
+    let invoice = await api.getInvoiceById(invoiceId)
+
+    fs.printEInvoice(settings, invoice, invoiceId)
+  },
 
   getCustomerById: async (id) => {
     let [api] = await init()

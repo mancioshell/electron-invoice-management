@@ -47,6 +47,10 @@ function InvoiceList() {
     await window?.api?.printInvoice(invoice._id)
   }
 
+  const printEInvoice = async (invoice) => {
+    await window?.api?.printEInvoice(invoice._id)
+  }
+
   return (
     <div className="mt-4">
       <h1>
@@ -61,7 +65,8 @@ function InvoiceList() {
             updateInvoice={updateInvoice}
             removeInvoice={removeInvoice}
             readInvoice={readInvoice}
-            printInvoice={printInvoice}></InvoiceListTable>
+            printInvoice={printInvoice}
+            printEInvoice={printEInvoice}></InvoiceListTable>
         </BlockUi>
       ) : (
         <Alert variant="primary" className="mt-5">

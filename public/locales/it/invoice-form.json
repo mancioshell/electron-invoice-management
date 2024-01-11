@@ -6,7 +6,10 @@
       "placeholder": "Inserisci la data di della fattura",
       "feedback": "La data della fattura è obbligatoria"
     },
-
+    "payment": {
+      "label": "Tipo Pagamento",
+      "feedback": "Il tipo di Pagamento è obbligatorio"
+    },
     "number": {
       "label": "Numero Fattura",
       "placeholder": "Inserisci il numero di della fattura",
