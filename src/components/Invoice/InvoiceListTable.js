@@ -66,7 +66,7 @@ function InvoiceListTable({
         </Button>
       </>
     ),
-    [printInvoice, readInvoice, removeInvoice, updateInvoice, t]
+    [printInvoice, printEInvoice, readInvoice, removeInvoice, updateInvoice, t]
   )
 
   const data = React.useMemo(
@@ -87,7 +87,25 @@ function InvoiceListTable({
 
   const columns = React.useMemo(
     () => [
-      { Header: t('columns.number'), accessor: 'number' },
+      {
+        Header: t('columns.number'),
+        accessor: 'number',
+        sortType: (a, b) => {
+          let [nA, yA] = a.values.number.split('/')
+          let [nB, yB] = b.values.number.split('/')
+
+          let numberA = parseInt(nA)
+          let numberB = parseInt(nB)
+          let yearA = parseInt(yA)
+          let yearB = parseInt(yB)
+
+          if (yearA > yearB) return 1
+          if (yearA === yearB) {
+            return numberA >= numberB ? 1 : -1
+          }
+          if (yearA < yearB) return -1
+        }
+      },
       { Header: t('columns.name'), accessor: 'name' },
       { Header: t('columns.surname'), accessor: 'surname' },
       { Header: t('columns.address'), accessor: 'address' },
