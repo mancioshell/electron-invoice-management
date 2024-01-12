@@ -5,51 +5,64 @@ function generateXml(settings, invoice) {
     const taxStampTreshold = settings['tax-stamp-treshold']
     let paymentType = invoice.payment || "MP05"
 
-    const extractIva = (tot) => (tot * 100) / (100 + 4)
+    const extractInps = (tot) => (tot * 100) / (100 + 4)
     const total = invoice.services.reduce((curr, next) => curr + next.price, 0)
-
-    let totalServices = 0
+    const totalInps = extractInps(total)
+    const totalIncome = total - totalInps
 
     const serviceList = create().ele("DatiBeniServizi")
 
     for (const [index, service] of invoice.services.entries()) {
-        const serviceIncome = extractIva(service.price)   
-        totalServices = totalServices + serviceIncome     
+        const serviceIncome = extractInps(service.price)
         serviceList
         .ele('DettaglioLinee')
             .ele('NumeroLinea').txt(index+1).up()
             .ele('Descrizione').txt(service.type).up()
+            .ele('Quantita').txt('1.00').up()            
             .ele('PrezzoUnitario').txt(serviceIncome.toFixed(2)).up()
             .ele('PrezzoTotale').txt(serviceIncome.toFixed(2)).up()
-            .ele('AliquotaIVA').txt('4.00').up()
+            .ele('AliquotaIVA').txt('0.00').up()
+            .ele('Natura').txt('N2.2').up()
         .up()
     }   
 
-    const totalIva = (totalServices * 4) / 100
-    console.log(totalServices)
        
     serviceList
     .ele('DatiRiepilogo')
-        .ele('AliquotaIVA').txt('4.00').up()
-        .ele('ImponibileImporto').txt(totalServices.toFixed(2)).up() // Totale Imponibile
-        .ele('Imposta').txt(totalIva.toFixed(2)).up() // IVA
-        .ele('EsigibilitaIVA').txt('I').up()
-        //.ele('Arrotondamento').txt('I').up()
+        .ele('AliquotaIVA').txt('0.00').up()
+        .ele('Natura').txt('N2.2').up()
+        .ele('ImponibileImporto').txt(totalIncome.toFixed(2)).up() // Totale Imponibile
+        .ele('Imposta').txt('0.00').up() // IVA        
+        .ele('RiferimentoNormativo').txt("Operazione in franchigia da IVA ai sensi della Legge 190 del 23 dicembre 2014 art.1 commi da 54 a 89").up()
     .up()
     .up()
 
     const taxStampElement = create()
 
-    if(totalServices > taxStampTreshold){        
+    if(totalIncome > taxStampTreshold){        
         taxStampElement
             .ele("DatiBollo")
                 .ele('BolloVirtuale').txt('SI').up()
                 .ele('ImportoBollo').txt('2.00').up()
             .up()
+        .up()
+    }
+
+    const customerElement = create()   
+
+    if(invoice.customer.piva !== ""){ 
+        customerElement
+            .ele('IdFiscaleIVA')
+                .ele('IdPaese').txt('IT').up()
+                .ele('IdCodice').txt(invoice.customer.piva).up()
+            .up()
+    }
+
+    if(invoice.customer.cf !== ""){ 
+        customerElement.ele('CodiceFiscale').txt(invoice.customer.cf).up()
     }
 
     const formattedDate = `${invoice.date.getFullYear()}-${invoice.date.getMonth() + 1}-${invoice.date.getDate()}`;
-
 
     const ds = 'http://www.w3.org/2000/09/xmldsig#'
     const p = 'http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2'
@@ -76,11 +89,12 @@ function generateXml(settings, invoice) {
                 .up()
 
                 .ele('CedentePrestatore')
-                    .ele('DatiAnagrafici')
+                    .ele('DatiAnagrafici')                        
                         .ele('IdFiscaleIVA')
                             .ele('IdPaese').txt('IT').up()
-                            .ele('IdCodice').txt(settings.cf).up()
+                            .ele('IdCodice').txt(settings.piva).up()
                         .up()
+                        .ele('CodiceFiscale').txt(settings.cf).up()
                         .ele('Anagrafica')
                             .ele('Nome').txt(settings.name).up()
                             .ele('Cognome').txt(settings.surname).up()
@@ -98,7 +112,7 @@ function generateXml(settings, invoice) {
 
                 .ele('CessionarioCommittente')
                     .ele('DatiAnagrafici')
-                        .ele('CodiceFiscale').txt(invoice.customer.cf).up()
+                        .ele(customerElement.toObject()).up()
                         .ele('Anagrafica')
                             .ele('Nome').txt(invoice.customer.name).up()
                             .ele('Cognome').txt(invoice.customer.surname).up()
@@ -122,11 +136,19 @@ function generateXml(settings, invoice) {
                         .ele('Divisa').txt('EUR').up()
                         .ele('Data').txt(formattedDate).up()
                         .ele('Numero').txt(`${invoice.number}/${invoice.date.getFullYear()}`).up() // Progressivo Fattura
-                        .ele(taxStampElement.toObject()).up()
+                        .ele(taxStampElement.toObject())
+                        .ele('DatiCassaPrevidenziale')
+                            .ele('TipoCassa').txt('TC22').up()
+                            .ele('AlCassa').txt('4.00').up()
+                            .ele('ImportoContributoCassa').txt(totalInps.toFixed(2)).up()
+                            .ele('ImponibileCassa').txt(totalIncome.toFixed(2)).up()
+                            .ele('AliquotaIVA').txt('0.00').up()
+                            //.ele('Ritenuta').txt('SI').up() // obbligatorio?
+                            .ele('Natura').txt('N2.2').up()
+                        .up()
                     .up()
                 .up()
                 .ele(serviceList.toObject()).up()
-
                 .ele('DatiPagamento')
                     .ele('CondizioniPagamento').txt('TP02').up() // TP02 Pagamento Completo
                     .ele('DettaglioPagamento')

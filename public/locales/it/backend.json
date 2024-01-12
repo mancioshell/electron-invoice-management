@@ -27,16 +27,16 @@
     "invoice-table-head-fourth": "Importo",
 
     "invoice-total": "Totale Imponibile",
-    "invoice-iva": "Rivalsa previdenziale Inps 4%",
-    "invoice-total-iva": "Totale Fattura",
+    "invoice-inps": "Rivalsa previdenziale Inps 4%",
+    "invoice-total-inps": "Totale Fattura",
     "invoice-tax-stamp": "Marca da Bollo *",
     "invoice-total-tax-stamp": "Totale a Pagare",
 
     "invoice-template-string-first": "* Imposta di bollo di",
-    "invoice-template-string-second": "euro assolta sull’originale se l’importo del compenso lordo della presente fattura è superiore a",
+    "invoice-template-string-second": "euro assolta sull'originale se l'importo del compenso lordo della presente fattura è superiore a",
     "invoice-template-string-third": "euro.",
     
-    "invoice-note": "Si informa che la presente fattura, emessa in duplice copia è soggetta al nuovo regime forfettario di cui all’art. 1, c. 54-89 L. 190/2014 e, pertanto, non viene addebitata l'imposta sul valore aggiunto a titolo di rivalsa e non è soggetta a ritenuta d'acconto.",
+    "invoice-note": "Si informa che la presente fattura, emessa in duplice copia è soggetta al nuovo regime forfettario di cui all'art. 1, c. 54-89 L. 190/2014 e, pertanto, non viene addebitata l'imposta sul valore aggiunto a titolo di rivalsa e non è soggetta a ritenuta d'acconto.",
 
     "header": {
       "cf": "CF: ",

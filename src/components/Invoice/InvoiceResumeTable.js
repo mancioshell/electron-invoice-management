@@ -23,7 +23,7 @@ function InvoiceResumeTable({ invoiceEntry }) {
 
         <tr>
           <td>
-            <b>{t('iva')}</b>
+            <b>{t('inps')}</b>
           </td>
           <td>{parseFloat(invoiceEntry.totalIva).toFixed(2)} €</td>
         </tr>

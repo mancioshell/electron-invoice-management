@@ -39,7 +39,7 @@ function createAutoUpdater(i18next) {
       buttons: [i18next.t('button.close'), i18next.t('button.remind-later')],
       title: i18next.t('title'),
       message: process.platform === 'win32' ? releaseNotes : releaseName,
-      detail: i18next.t('button.detail')
+      detail: i18next.t('detail')
     }
 
     dialog.showMessageBox(dialogOpts).then((returnValue) => {

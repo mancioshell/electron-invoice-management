@@ -69,7 +69,11 @@ function generateCustomerInformation(i18next, doc, invoice) {
     .font('Helvetica-Bold')
     .text(i18next.t('pdf.invoice-number'), 50, customerInformationTop)
     .font('Helvetica')
-    .text(`${invoice.number}/${invoice.date.getFullYear()}`, 170, customerInformationTop)
+    .text(
+      `${invoice.number}/${invoice.date.getFullYear()}`,
+      170,
+      customerInformationTop
+    )
     .font('Helvetica-Bold')
 
   doc
@@ -113,12 +117,12 @@ function generateInvoiceTable(i18next, doc, items, taxStamp, settings) {
 
   const hrLenght = 500
 
-  const extractIva = (tot) => (tot * 100) / (100 + 4)
+  const extractInps = (tot) => (tot * 100) / (100 + 4)
 
   const total = items.reduce((curr, next) => curr + next.price, 0)
 
-  const totalIncome = extractIva(total)
-  const totalIva = (totalIncome * 4) / 100
+  const totalIncome = extractInps(total)
+  const totalInps = (totalIncome * 4) / 100
 
   const taxStampTreshold = settings['tax-stamp-treshold']
 
@@ -167,11 +171,15 @@ function generateInvoiceTable(i18next, doc, items, taxStamp, settings) {
 
   let invoice = [
     { type: i18next.t('pdf.invoice-total'), amount: totalIncome },
-    { type: i18next.t('pdf.invoice-iva'), amount: totalIva },
-    { type: i18next.t('pdf.invoice-total-iva'), amount: totalIncome + totalIva },
+    { type: i18next.t('pdf.invoice-inps'), amount: totalInps },
+    {
+      type: i18next.t('pdf.invoice-total-inps'),
+      amount: totalIncome + totalInps
+    },
     {
       type: i18next.t('pdf.invoice-tax-stamp'),
-      amount: totalIncome > taxStampTreshold ? settings['tax-stamp-amount'] : '-'
+      amount:
+        totalIncome > taxStampTreshold ? settings['tax-stamp-amount'] : '-'
     },
     {
       type: '',
@@ -180,8 +188,8 @@ function generateInvoiceTable(i18next, doc, items, taxStamp, settings) {
     {
       type: i18next.t('pdf.invoice-total-tax-stamp'),
       amount:
-      totalIncome +
-        totalIva +
+        totalIncome +
+        totalInps +
         (totalIncome > taxStampTreshold ? settings['tax-stamp-amount'] : 0)
     }
   ]
